@@ -1,11 +1,8 @@
 PumaApp::Application.routes.draw do
-  get "pages/home"
-
-  get "pages/contact"
-
-  get "pages/about"
-
-  get "pages/master"
+  root to: 'pages#home'
+  match '/about',   to: 'pages#about'
+  match '/contact', to: 'pages#contact'
+  match '/master',   to: 'pages#master'  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
