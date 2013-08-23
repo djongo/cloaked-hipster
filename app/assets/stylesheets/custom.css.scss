@@ -2,6 +2,17 @@
 
 /* mixins, variables, etc. */
 
+/* HBSC colours  */
+$primaryHbscGreyBlack: #222E3B;
+$primaryHbscBlue: #00B5DD;
+$hbscHighlight: #D2007A;
+$hbscGreen: #97BF0D;
+$hbscYellow: #F6A924;
+$hbscPurple: #8685BB;
+$hbscMidBlue: #98BBDB;
+$hbscPaleBlue: #ccf2fa;
+$darkenedPaleBlue: #bce0e7;
+
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
