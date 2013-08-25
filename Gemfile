@@ -3,7 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 gem 'bootstrap-sass', '2.1'
 gem 'jquery-rails', '2.0.2'
-gem 'pg', '0.15.1'
+gem 'pg', '0.15.1'          # database connector
+gem 'devise', '3.0.3'       # authentication
+gem 'figaro', '0.7.0'       # masking private stuff in opensource
+
 
 # gem 'bcrypt-ruby', '3.0.1'
 # gem 'faker', '1.0.1'
@@ -13,7 +16,6 @@ gem 'pg', '0.15.1'
 # gem 'rails', '3.2.14'
 # gem 'bootstrap-sass', '2.3.2.1'
 # gem 'jquery-rails', '3.0.4'
-#gem 'devise'
 #gem 'declarative_authorization'
 #gem 'will_paginate'
 
@@ -45,14 +47,25 @@ group :development, :test do
   gem 'childprocess', '0.3.9'
   gem 'spork', '0.9.2'
   gem 'annotate', '2.5.0'
+  gem 'factory_girl_rails', '4.2.1'
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :test do
 	# gem 'rspec', '2.0.1'
 	# gem 'webrat', '0.7.3'
+	gem 'database_cleaner', '1.1.1'
+	gem 'email_spec', '1.5.0'
   gem 'capybara', '1.1.2'
   gem 'rb-fsevent', '0.9.3', :require => false
   gem 'growl', '1.0.3'
+  gem 'cucumber-rails', '1.4.0', :require => false
+  gem 'launchy'
 end
 
 # To use ActiveModel has_secure_password
