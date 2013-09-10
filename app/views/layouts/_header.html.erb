@@ -4,8 +4,8 @@
 			<nav>
 				<ul class="nav pull-left">
 					<li><%= link_to "Home",	root_path %></li>
-					<li><%= link_to "Publications",	'#' %></li>
-					<li><%= link_to "Master Data",	master_path %></li>
+					<li><%= link_to "Publications",	publications_path if permitted_to? :index, :publications %></li>
+					<li><%= link_to "Master Data",	master_path if permitted_to? :master, :pages %></li>
 					<li><%= link_to "About",	about_path %></li>
 					<li><%= link_to "Contact",	contact_path %></li>
 				</ul>

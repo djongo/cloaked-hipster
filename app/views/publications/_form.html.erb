@@ -1,0 +1,78 @@
+<%= simple_form_for(@publication) do |f| %>
+  <%= f.error_notification %>
+
+<div class="form-inputs">
+
+<p>
+<% if @publication.state != "published" %>
+  <%= f.label "Working Title" %><br />
+<% else %>
+  <%= f.label :title %><br />
+<% end %>
+  <%= f.text_field :title, :size => 120, :autofocus => true %>
+</p>
+
+<table>
+  <tr>
+    <td>
+    <div class="line_of_boxes">
+      <div class="box_in_line">
+        <%= f.label :keyword_tokens, "Keywords" %>
+        <%= f.text_field :keyword_tokens, data: {load: @publication.keyword_variable_ids } %>
+      </div>
+      <div class="box_bottom"></div>
+    </div>
+    </td>
+    <td>
+      <%= f.input :publication_type_id, collection: PublicationType.all, prompt: "Select one..." %>
+    </td>
+    <td>
+      <%= f.input :language_id, collection: Language.all, prompt: "Select one..." %>
+    </td>
+  </tr>
+</table>  
+    <%= f.input :abstract, as: :text, input_html: { cols: 60, rows: 5 }  %>
+
+<h3>Author(s)</h3>
+use [drag] to change author order
+<ul id="authors" data-update-url="<%= sort_authors_url %>">
+  <%= f.simple_fields_for :authors do |builder| %>
+    <%= render 'author_fields', f: builder %>
+  <% end %>
+</ul>  
+<%= link_to_add_fields "Add Author", f, :authors %>
+
+<h3>Contacts</h3>
+<%= f.input :user_id, label: "HBSC Responsible Author", collection: User.all %>
+
+<h3>Data</h3>   
+<div class="line_of_boxes">
+  <div class="box_in_line">
+    Survey data
+    <div id="foundation_children" class="box_in_line_content">
+        <%= f.label :survey_tokens, "Surveys" %>
+        <%= f.text_field :survey_tokens, data: {load: @publication.surveys } %>
+    </div>
+  </div>
+  
+  <div class="box_in_line">
+    Population(s):
+    <div id="inclusion_children" class="box_in_line_content">
+        <%= f.label :population_tokens, "Populations" %>
+        <%= f.text_field :population_tokens, data: {load: @publication.populations } %>
+    </div>      
+  </div>
+  <div class="box_bottom"></div>
+</div>
+<h3>Reference</h3>
+  <%= f.input :reference, as: :text, input_html: { cols: 60, rows: 5 } %>
+  <%= f.input :url %>
+  
+  <%= f.label :target_journal_name %><br />
+  <%= f.text_field :target_journal_name, data: {autocomplete_source: target_journals_path( format: 'json') } %>
+</div>
+
+<div class="form-actions">
+  <%= f.button :submit, class: "btn btn-primary" %>
+</div>
+<% end %>

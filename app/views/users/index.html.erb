@@ -1,7 +1,36 @@
-<ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= link_to user.name, user %> signed up <%= user.created_at.to_date %>
-    </li>
+<h1>Users</h1>
+
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>ID</th>
+    <th>Email</th>
+    <th>Name</th>
+    <th>Created</th>
+    <th>Last Login</th>
+    <th>HBSC Member</th>
+    <th>Roles</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  Users per page:
+  <%= select_tag :per_page, options_for_select([15,30,60], params[:per_page].to_i),
+               :onchange => "if(this.value){window.location='?per_page='+this.value;}" %>
+  <%= will_paginate(@users) %>
+  <% for user in @users %>
+    <tr>
+      <td><%=h user.id %></td>      
+      <td><%=h user.email %></td>
+      <td><%=h user.name %></td>
+      <td><%=h user.created_at.strftime('%Y-%m-%d') %></td>
+      <td align="center"><%= user.last_sign_in_at? ? user.last_sign_in_at.strftime('%Y-%m-%d') : 'N/A' %></td>
+      <td align="center"><%=h user.hbsc_member? ? 'Yes' : 'No' %></td>
+      <td><%=h user.role_symbols.join(', ').titleize %></td>
+
+      <td><%= link_to "Show", user if permitted_to? :show, :users %></td>
+      <td><%= link_to "Edit", edit_user_path(user) if permitted_to? :edit, :users %></td>
+      <td><%= link_to "Destroy", user, :confirm => 'Are you sure?', :method => :delete if permitted_to? :destroy, :users %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
+
+
+<p><%= link_to "New User", new_user_path if permitted_to? :new, :users %></p>

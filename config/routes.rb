@@ -1,5 +1,57 @@
 PumaApp::Application.routes.draw do
-  
+  resources :authors do
+    collection do
+      post 'sort'
+    end
+  end
+
+  resources :emails
+  resources :notes
+  resources :target_journals
+  resources :variables
+  resources :focus_groups
+  resources :country_teams
+  resources :populations
+  resources :publication_types
+  resources :surveys
+  resources :languages
+  resources :pages
+  # resources :publications
+
+  resources :publications do
+    collection do
+      get 'list'
+      post 'import'
+    end
+    member do 
+      put 'preplanned_submit'
+      put 'preplanned_accept'
+      put 'preplanned_reject' 
+      put 'preplanned_remind'
+      put 'planned_submit'
+      put 'planned_accept'
+      put 'planned_reject' 
+      put 'planned_remind'
+      put 'inprogress_submit'  
+      put 'inprogress_accept'
+      put 'inprogress_reject' 
+      put 'inprogress_remind'
+      put 'submitted_submit'  
+      put 'submitted_accept'
+      put 'submitted_reject'
+      put 'submitted_remind'
+      put 'accepted_submit'  
+      put 'accepted_accept'
+      put 'accepted_reject'
+      put 'accepted_remind'
+      put 'unlock'
+      put 'archive'
+      put 'unarchive'
+      get 'audit'
+    end
+  end
+
+
   devise_for :users
   resources :users
 
@@ -7,6 +59,7 @@ PumaApp::Application.routes.draw do
   match '/about',   to: 'pages#about'
   match '/contact', to: 'pages#contact'
   match '/master',  to: 'pages#master'  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @author.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @author.email %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @author.position %>
+</p>
+
+<p>
+  <b>Publication:</b>
+  <%= @author.publication_id %>
+</p>
+
+<p>
+  <b>Country team:</b>
+  <%= @author.country_team_id %>
+</p>
+
+<p>
+  <b>Focus group:</b>
+  <%= @author.focus_group_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_author_path(@author) %> |
+<%= link_to 'Back', authors_path %>

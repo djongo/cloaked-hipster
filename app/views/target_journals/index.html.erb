@@ -1,0 +1,27 @@
+<h1>Listing Target Journals</h1>
+
+<table id="target_journals" class="display">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @target_journals.each do |target_journal| %>
+    <tr>
+      <td><%= target_journal.name %></td>
+      <td><%= link_to 'Show', target_journal %></td>
+      <td><%= link_to 'Edit', edit_target_journal_path(target_journal) %></td>
+      <td><%= link_to 'Destroy', target_journal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Target journal', new_target_journal_path %>

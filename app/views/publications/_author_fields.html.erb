@@ -1,0 +1,11 @@
+<%= content_tag_for :li, f.object do %>
+	<span class="handle">[drag]</span>
+	<fieldset>
+	  <%= f.input :name %>
+		<%= f.input :email %>
+	  <%= f.input_field :country_team_id, collection: CountryTeam.all, prompt: "Select country team" %>
+		<%= f.input_field :focus_group_id, collection: FocusGroup.all, prompt: "Select focus group" %>
+		<%= f.hidden_field :_destroy %>
+	  <%= link_to 'Remove author', '#', class: "remove_fields" %>
+	</fieldset>
+<% end %>

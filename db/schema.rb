@@ -11,7 +11,143 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825151714) do
+ActiveRecord::Schema.define(:version => 20130906191459) do
+
+  create_table "authors", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "position"
+    t.integer  "publication_id"
+    t.integer  "country_team_id"
+    t.integer  "focus_group_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "country_teams", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "determinants", :force => true do |t|
+    t.integer  "publication_id"
+    t.integer  "variable_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "emails", :force => true do |t|
+    t.string   "trigger"
+    t.string   "subject"
+    t.string   "content"
+    t.integer  "delay",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "focus_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "foundations", :force => true do |t|
+    t.integer  "publication_id"
+    t.integer  "survey_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "inclusions", :force => true do |t|
+    t.integer  "publication_id"
+    t.integer  "population_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "keywords", :force => true do |t|
+    t.integer  "publication_id"
+    t.integer  "variable_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "languages", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "mediators", :force => true do |t|
+    t.integer  "publication_id"
+    t.integer  "variable_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "notes", :force => true do |t|
+    t.text     "content"
+    t.string   "state"
+    t.integer  "publication_id"
+    t.integer  "user_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "outcomes", :force => true do |t|
+    t.integer  "publication_id"
+    t.integer  "variable_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "populations", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "publication_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "publications", :force => true do |t|
+    t.text     "title"
+    t.text     "abstract"
+    t.string   "state",               :default => "preplanned"
+    t.text     "reference"
+    t.string   "url"
+    t.text     "change"
+    t.boolean  "archived",            :default => false
+    t.integer  "language_id"
+    t.integer  "publication_type_id"
+    t.integer  "target_journal_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  create_table "surveys", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "target_journals", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
@@ -33,5 +169,11 @@ ActiveRecord::Schema.define(:version => 20130825151714) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "variables", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

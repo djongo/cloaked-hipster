@@ -3,22 +3,23 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 gem 'bootstrap-sass', '2.1'
 gem 'jquery-rails', '2.0.2'
-gem 'pg', '0.15.1'          # database connector
-gem 'devise', '3.0.3'       # authentication
-gem 'figaro', '0.7.0'       # masking private stuff in opensource
+gem 'pg', '0.15.1'                        # database connector
+gem 'devise', '3.0.3'                     # authentication
+gem 'figaro', '0.7.0'                     # masking private stuff in opensource
+gem 'declarative_authorization', '0.5.7'  # authorization
+gem 'aasm', '3.0.22'                      # state machine
+gem 'acts_as_list', '0.3.0'               # author order
+gem 'will_paginate', '3.0.4'
+gem 'bootstrap-will_paginate', '0.0.9'
+gem 'simple_form', '2.1.0'
 
+gem 'thinking-sphinx', '3.0.5'
+gem 'flying-sphinx', '1.0.0'
 
+# gem 'wicked_pdf', '0.9.6'
+gem 'pdfkit', '0.5.4'
 # gem 'bcrypt-ruby', '3.0.1'
 # gem 'faker', '1.0.1'
-# gem 'will_paginate', '3.0.3'
-# gem 'bootstrap-will_paginate', '0.0.6'
-
-# gem 'rails', '3.2.14'
-# gem 'bootstrap-sass', '2.3.2.1'
-# gem 'jquery-rails', '3.0.4'
-#gem 'declarative_authorization'
-#gem 'will_paginate'
-
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -31,6 +32,8 @@ group :assets do
 	gem 'uglifier', '1.2.3'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
+  gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+  gem 'jquery-ui-rails'
 end
 
 group :development, :test do
@@ -48,13 +51,14 @@ group :development, :test do
   gem 'spork', '0.9.2'
   gem 'annotate', '2.5.0'
   gem 'factory_girl_rails', '4.2.1'
-  gem 'simple_form', '2.1.0'  
 end
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
+  gem 'mysql2', '0.3.13'  
+  gem 'wkhtmltopdf-binary', '0.9.9.1'
 end
 
 group :test do

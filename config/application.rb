@@ -1,11 +1,14 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
+require "csv"
 require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
+require "pdfkit"
+# require "wicked_pdf"
 # require "rails/test_unit/railtie"
 
 if defined?(Bundler)
@@ -79,6 +82,9 @@ module PumaApp
     # For Heroku: forcing application to not access the DB
     # or load models when precompiling your assets.
     config.assets.initialize_on_precompile = false
+
+    config.middleware.use "PDFKit::Middleware", print_media_type: true
+    # config.middleware.use WickedPdf::Middleware
 
   end
 end

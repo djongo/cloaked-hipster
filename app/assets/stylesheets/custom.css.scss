@@ -158,3 +158,173 @@ input {
   @extend .control-group;
   @extend .error;
 }
+
+/* Pretty tables */
+
+table.pretty {
+  border-collapse: collapse;
+}
+
+.pretty td, .pretty th {
+  padding: 4px 10px;
+  border: solid 1px #AAA;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.pretty th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty th .asc {
+  background-image: url(/images/up_arrow.gif);
+}
+
+.pretty th .desc {
+  background-image: url(/images/down_arrow.gif);
+}
+
+/* Boxes */ 
+
+div.line_of_boxes {
+        position:relative;
+        padding-bottom: 10px;
+        page-break-inside:avoid;
+}
+
+div.box_in_line {
+        float: left;
+        margin-left: 5px;
+        padding: 5px;
+        height: 100%;
+}
+
+div.box_in_line_content {
+        border: 1px solid #ccc;
+        padding: 5px;
+        height: 100%;
+}
+
+div.box_bottom{
+        clear:both;
+}
+
+/* Auto complete */
+
+div.auto_complete {
+  width: 350px;
+  background: #fff;
+}
+div.auto_complete ul {
+  border:1px solid #888;
+  margin:0;
+  padding:0;
+  width:100%;
+  list-style-type:none;
+}
+div.auto_complete ul li {
+  margin:0;
+  padding:3px;
+}
+div.auto_complete ul li.selected {
+  background-color: #ffb;
+}
+div.auto_complete ul strong.highlight {
+  color: #800; 
+  margin:0;
+  padding:0;
+}
+
+.child {
+  padding-left:10px;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+@media print {
+    body {
+        background-color: #FFF;
+    }
+    
+    #container {
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    #pdf_link {
+        display: none;
+    }
+
+    div#nav {
+        display: none;
+    }
+    
+    #version_box {
+        display: none;
+    }
+
+/*    div.line_of_boxes {
+        page-break-before: always;
+    }    
+*/        
+}
+
+#version_box {
+  width: 75%;
+  background-color: #FFD700;
+  border: solid 1px #B8860B;
+  padding: 5px 8px;
+  margin: 10px 0;  
+}
+
+#help_explanation_box {
+  width: 75%;
+  background-color: #DDD;
+  border: solid 1px #AAA;
+  padding: 5px 8px;
+  margin-top:10px;
+  margin-left:auto;
+  margin-right:auto;
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  font-size: 10px;  
+}
+
+@media print {
+    body {
+        background-color: #F00;
+    }
+    
+    #container {
+        width: auto;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    #pdf_link {
+        display: none;
+    }
+
+    div#nav {
+        display: none;
+    }
+
+    div#navbar {
+      display: none;
+    }
+
+    footer { display:none; }
+    
+    #version_box {
+        display: none;
+    }
+
+/*    div.line_of_boxes {
+        page-break-before: always;
+    }    
+*/        
+}
