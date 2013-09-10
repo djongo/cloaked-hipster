@@ -78,6 +78,7 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'wkhtmltopdf-heroku', '1.0.0'
 end
 
 # To use ActiveModel has_secure_password
