@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: variables
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Variable < ActiveRecord::Base
   attr_accessible :name, :publication_ids
   validates_presence_of :name

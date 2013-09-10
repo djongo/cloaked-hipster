@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: mediators
+#
+#  id             :integer          not null, primary key
+#  publication_id :integer
+#  variable_id    :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Mediator < ActiveRecord::Base
   attr_accessible :publication_id, :variable_id, :variable_name
   belongs_to :publication

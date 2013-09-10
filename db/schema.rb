@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906191459) do
+ActiveRecord::Schema.define(:version => 20130908123614) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -129,8 +129,8 @@ ActiveRecord::Schema.define(:version => 20130906191459) do
     t.string   "url"
     t.text     "change"
     t.boolean  "archived",            :default => false
-    t.integer  "language_id"
-    t.integer  "publication_type_id"
+    t.integer  "language_id",         :default => 1
+    t.integer  "publication_type_id", :default => 1
     t.integer  "target_journal_id"
     t.integer  "user_id"
     t.datetime "created_at",                                    :null => false
