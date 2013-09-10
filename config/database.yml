@@ -25,10 +25,12 @@ test: &test
   host: localhost
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: puma_production
   pool: 5
-  timeout: 5000
+  encoding: unicode
+  username: puma
+  password: testingForHBSC
 
 cucumber:
   <<: *test
