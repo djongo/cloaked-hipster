@@ -22,3 +22,7 @@
 
 # Ignore mac files
 *.DS_Store
+
+# Ignore sphinx files
+/db/sphinx/*
+/config/*.sphinx.conf
