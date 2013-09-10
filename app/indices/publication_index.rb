@@ -12,7 +12,7 @@ ThinkingSphinx::Index.define :publication, :with => :active_record do
     # indexes notes.content, :as => :note_content
     
     # Keywords, mediators, outcomes, and determinants
-    indexes keyword_variables(:name), :as => :keyword_name
+    # indexes keyword_variables(:name), :as => :keyword_name
     indexes variables(:name), :as => :variable_name
 
     # People information
@@ -21,8 +21,8 @@ ThinkingSphinx::Index.define :publication, :with => :active_record do
     # Author information
     indexes authors(:name), :as => :author_name
     indexes authors.email, :as => :author_email
-    indexes authors.country_team(:name), :as => :country_team_name
-    indexes authors.focus_group(:name), :as => :focus_group_name
+    indexes authors.country_team.name, :as => :country_team_name
+    indexes authors.focus_group.name, :as => :focus_group_name
 
   # SOLUTION FOR HMT: http://railsforum.com/viewtopic.php?id=28917
     has created_at, updated_at, :id
