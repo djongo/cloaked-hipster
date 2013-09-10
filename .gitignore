@@ -19,3 +19,6 @@
 
 # Ignore my notes
 /doc/jonas_notes
+
+# Ignore mac files
+*.DS_Store
