@@ -26,6 +26,8 @@ gem 'pdfkit', '0.5.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'mysql2', '0.3.13'  
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -59,7 +61,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'mysql2', '0.3.13'  
   gem 'wkhtmltopdf-binary', '0.9.9.1'
 end
 
