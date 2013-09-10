@@ -59,7 +59,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
-  gem 'mysql2', '0.3.13'  
+  # gem 'mysql2', '0.3.13'  
   gem 'wkhtmltopdf-binary', '0.9.9.1'
 end
 
