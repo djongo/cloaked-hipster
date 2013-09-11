@@ -23,8 +23,8 @@ class Keyword < ActiveRecord::Base
     self.variable = Variable.find_or_create_by_name(name) unless name.blank?
   end  
 
-  def self.ids_from_tokens(tokens, pub_id)
-    tokens.gsub!(/<<<(.+?)>>>/) { create!(variable_name: $1, publication_id: pub_id).id }
-    tokens.split(",")
-  end
+  # def self.ids_from_tokens(tokens, pub_id)
+  #   tokens.gsub!(/<<<(.+?)>>>/) { create!(variable_name: $1, publication_id: pub_id).id }
+  #   tokens.split(",")
+  # end
 end

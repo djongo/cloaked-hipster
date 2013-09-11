@@ -18,7 +18,7 @@
     <div class="line_of_boxes">
       <div class="box_in_line">
         <%= f.label :keyword_tokens, "Keywords" %>
-        <%= f.text_field :keyword_tokens, data: {load: @publication.keyword_variable_ids } %>
+        <%= f.text_field :keyword_tokens, data: {load: @publication.variables } %>
       </div>
       <div class="box_bottom"></div>
     </div>

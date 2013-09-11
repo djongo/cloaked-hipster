@@ -22,10 +22,22 @@ class Publication < ActiveRecord::Base
   attr_accessible :abstract, :archived, :change, :language_id, 
     :publication_type_id, :reference, :state, :target_journal_id, 
     :title, :url, :user_id, :keyword_tokens, :survey_tokens, 
-    :population_tokens, :target_journal_name, :authors_attributes
+    :population_tokens, :target_journal_name, :authors_attributes, 
+    :keywords, :mediators, :outcomes, :determinants, :inclusions,
+    :foundations
+  
   include AASM
 
-  after_save :keyword_tokens
+  # has_paper_trail   :meta => { 
+  #   :keywords => Proc.new { |publication|  publication.hmt_list(publication.keywords) },
+  #   :mediators => Proc.new { |publication|  publication.hmt_list(publication.mediators) }, 
+  #   :outcomes => Proc.new { |publication|  publication.hmt_list(publication.outcomes) },    
+  #   :determinants => Proc.new { |publication|  publication.hmt_list(publication.determinants) },   
+  #   :inclusions => Proc.new { |publication|  publication.inclusions_list },    
+  #   :foundations => Proc.new { |publication|  publication.foundations_list }            
+  #   }
+
+  # after_save :keyword_tokens
   
   belongs_to :language
   belongs_to :publication_type
@@ -103,16 +115,16 @@ class Publication < ActiveRecord::Base
   
   # Tagging methods
   def keyword_tokens=(tokens)
-    self.variable_ids = Keyword.ids_from_tokens(tokens)
+    self.variable_ids = Variable.ids_from_tokens(tokens)
   end
 
-  def keyword_variable_ids
-    ids = []
-    self.keywords.each do |k|
-      ids.push(k.variable_id)
-    end
-    return ids
-  end
+  # def keyword_variable_ids
+  #   ids = []
+  #   self.keywords.each do |k|
+  #     ids.push(k.variable_id)
+  #   end
+  #   return ids
+  # end
 
   def survey_tokens=(ids)
     self.survey_ids = ids.split(",")
@@ -129,6 +141,63 @@ class Publication < ActiveRecord::Base
 
   def target_journal_name=(name)
     self.target_journal = TargetJournal.find_or_create_by_name(name) if name.present?
+  end
+
+  # methods for meta data for versions
+  def hmt_list(hmt)
+    l = []
+    hmt.each do |k|
+#      puts "just before adding to array: #{k}"
+      l << k.variable_id unless k.marked_for_destruction?
+    end
+    return l.sort.to_yaml
+  end
+
+  # given a yaml list of variable ids return names as concatenated string
+  def list_variable_names(yaml_list)
+    l = ""
+    if !yaml_list.nil?
+      YAML.load(yaml_list).each do |k|
+        l += Variable.find_by_id(k).name + " "
+      end
+    end
+    return l.chomp(" ")
+  end
+
+  def inclusions_list
+    l = []
+    self.inclusions.each do |k|
+      l << k.population_id unless k.marked_for_destruction?
+    end
+    return l.sort.to_yaml
+  end
+
+  def list_inclusion_names(yaml_list)
+    l = ""
+    if !yaml_list.nil?
+      YAML.load(yaml_list).each do |k|
+        l += Population.find_by_id(k).name + " "
+      end
+    end
+    return l.chomp(" ")
+  end
+
+  def foundations_list
+    l = []
+    self.foundations.each do |k|
+      l << k.survey_id unless k.marked_for_destruction?
+    end
+    return l.sort.to_yaml
+  end
+
+  def list_foundation_names(yaml_list)
+    l = ""
+    if !yaml_list.nil?
+      YAML.load(yaml_list).each do |k|
+        l += Survey.find_by_id(k).name + " "
+      end
+    end
+    return l.chomp(" ")
   end
 
   # Methods for import
@@ -237,7 +306,7 @@ class Publication < ActiveRecord::Base
         authors_arr.each do |a|
           author = Author.new
           author.name = a.strip
-          author.position = authors_arr.index(a)
+          author.position = authors_arr.index(a+1)
           author.publication_id = publication.id
           if given_country_team_id
             author.country_team_id = given_country_team_id
@@ -428,6 +497,46 @@ class Publication < ActiveRecord::Base
 	  end
   end
 
+  # the functions      
+  def send_preplanned_accept
+    flash[:notice] = "Accepted as planned"
+  end
+  
+  def send_preplanned_reject
+    flash[:error] = "Rejected"
+  end
+
+  def send_planned_accept
+    flash[:notice] = "Accepted as inprogress"
+  end
+  
+  def send_planned_reject
+    flash[:error] = "Rejected"
+  end
+
+  def send_inprogress_accept
+    flash[:notice] = "Accepted as submitted"
+  end
+  
+  def send_inprogress_reject
+    flash[:error] = "Rejected"
+  end
+
+  def send_submitted_accept
+    flash[:notice] = "Accepted as accepted"
+  end
+  
+  def send_submitted_reject
+    flash[:error] = "Rejected"
+  end
+
+  def send_accepted_accept
+    flash[:notice] = "Accepted as published"
+  end
+  
+  def send_accepted_reject
+    flash[:error] = "Rejected"
+  end
 
 
 end
