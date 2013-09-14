@@ -59,7 +59,7 @@ if Email.find_by_trigger('preplanned_submit').nil?
 end
 
 if Email.find_by_trigger('preplanned_accept').nil?
-  Email.create! :trigger => 'preplanned_accept', :subject => 'Publication acceptance', :content => 'You preplanned publication has been acceptance as planned.', :delay => 0
+  Email.create! :trigger => 'preplanned_accept', :subject => 'Publication acceptance', :content => 'You preplanned publication has been accepted as planned.', :delay => 0
 end
 
 if Email.find_by_trigger('preplanned_reject').nil?
@@ -75,7 +75,7 @@ if Email.find_by_trigger('planned_submit').nil?
 end
 
 if Email.find_by_trigger('planned_accept').nil?
-  Email.create! :trigger => 'planned_accept', :subject => 'Publication acceptance', :content => 'You planned publication has been acceptance as in progress.', :delay => 0
+  Email.create! :trigger => 'planned_accept', :subject => 'Publication acceptance', :content => 'You planned publication has been accepted as in progress.', :delay => 0
 end
 
 if Email.find_by_trigger('planned_reject').nil?
@@ -91,7 +91,7 @@ if Email.find_by_trigger('inprogress_submit').nil?
 end
 
 if Email.find_by_trigger('inprogress_accept').nil?
-  Email.create! :trigger => 'inprogress_accept', :subject => 'Publication acceptance', :content => 'You in progress publication has been acceptance as submitted.', :delay => 0
+  Email.create! :trigger => 'inprogress_accept', :subject => 'Publication acceptance', :content => 'You in progress publication has been accepted as submitted.', :delay => 0
 end
 
 if Email.find_by_trigger('inprogress_reject').nil?
@@ -107,7 +107,7 @@ if Email.find_by_trigger('submitted_submit').nil?
 end
 
 if Email.find_by_trigger('submitted_accept').nil?
-  Email.create! :trigger => 'submitted_accept', :subject => 'Publication acceptance', :content => 'You submitted publication has been acceptance as accepted.', :delay => 0
+  Email.create! :trigger => 'submitted_accept', :subject => 'Publication acceptance', :content => 'You submitted publication has been accepted as accepted.', :delay => 0
 end
 
 if Email.find_by_trigger('submitted_reject').nil?
@@ -123,7 +123,7 @@ if Email.find_by_trigger('accepted_submit').nil?
 end
 
 if Email.find_by_trigger('accepted_accept').nil?
-  Email.create! :trigger => 'accepted_accept', :subject => 'Publication acceptance', :content => 'You accepted publication has been acceptance as published.', :delay => 0
+  Email.create! :trigger => 'accepted_accept', :subject => 'Publication acceptance', :content => 'You accepted publication has been accepted as published.', :delay => 0
 end
 
 if Email.find_by_trigger('accepted_reject').nil?
@@ -135,5 +135,5 @@ if Email.find_by_trigger('accepted_remind').nil?
 end
 
 if Email.find_by_trigger('unlock').nil?
-  Email.create! :trigger => 'unlock', :subject => 'Publication acceptance', :content => 'You previously rejected publication has been acceptance as preplanned.', :delay => 0
+  Email.create! :trigger => 'unlock', :subject => 'Publication acceptance', :content => 'You previously rejected publication has been accepted as preplanned.', :delay => 0
 end

@@ -1,6 +1,7 @@
-<h1>Listing emails</h1>
+<h1>Listing Emails</h1>
 
-<table class="table table-striped table-bordered">
+<table id="master_data" class="table table-striped table-bordered">
+  <thead>
   <tr>
     <th>Trigger</th>
     <th>Subject</th>
@@ -8,20 +9,18 @@
     <th>Delay</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
-
+</thead><tbody>
 <% @emails.each do |email| %>
   <tr>
     <td><%= email.trigger %></td>
     <td><%= email.subject %></td>
     <td><%= email.content %></td>
     <td><%= email.delay %></td>
-    <td><%= link_to 'Show', email %></td>
     <td><%= link_to 'Edit', edit_email_path(email) %></td>
     <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
-<% end %>
+<% end %></tbody>
 </table>
 
 <br />

@@ -1,23 +1,24 @@
-<h1>Listing populations</h1>
+<h1>Listing Populations</h1>
 
-<table id="populations" class="table table-striped table-bordered">
+<table id="master_data" class="table table-striped table-bordered">
+  <thead>
   <tr>
     <th>Name</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
-
+</thead>
+<tbody>
 <% @populations.each do |population| %>
   <tr>
     <td><%= population.name %></td>
-    <td><%= link_to 'Show', population %></td>
     <td><%= link_to 'Edit', edit_population_path(population) %></td>
     <td><%= link_to 'Destroy', population, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
-<br />
+<br /><br /><br />
 
 <%= link_to 'New Population', new_population_path %>

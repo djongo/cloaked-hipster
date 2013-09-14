@@ -294,6 +294,11 @@ div.auto_complete ul strong.highlight {
 }
 
 @media print {
+
+    .no-print, .no-print * {
+      display: none !important;
+    }
+
     body {
         background-color: #F00;
     }
@@ -306,7 +311,7 @@ div.auto_complete ul strong.highlight {
     }
 
     #pdf_link {
-        display: none;
+        display: none !important;
     }
 
     div#nav {
@@ -327,4 +332,16 @@ div.auto_complete ul strong.highlight {
         page-break-before: always;
     }    
 */        
+}
+
+/* Datatable adjustment */
+div.dataTables_filter label {
+    float: right;
+}
+.pagination {
+  font-size: small;  
+}
+
+div.dataTables_filter {
+    float: right;
 }

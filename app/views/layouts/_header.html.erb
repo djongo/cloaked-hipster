@@ -2,7 +2,7 @@
 <header class="navbar">
 	<div class="navbar-inner">
 			<nav>
-				<ul class="nav pull-left">
+				<ul class="nav pull-left no-print">
 					<li><%= link_to "Home",	root_path %></li>
 					<li><%= link_to "Publications",	publications_path if permitted_to? :index, :publications %></li>
 					<li><%= link_to "Master Data",	master_path if permitted_to? :master, :pages %></li>

@@ -219,7 +219,7 @@
   <%= link_to "Reject as published", accepted_reject_publication_path(@publication), :method => :put if permitted_to? :progress, :publications %>
 <% end %>
 </p>
-<p id="pdf_link">
+<p id="pdf_link" class="no-print">
   <%= link_to "PDF version", publication_path(@publication, :format => "pdf") %>
 </p>
 
@@ -234,4 +234,3 @@
   <b>Change:</b>
   <%= @publication.change %>
 </p>
-
