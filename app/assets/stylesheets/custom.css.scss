@@ -243,6 +243,11 @@ div.auto_complete ul strong.highlight {
   padding-bottom:5px;
 }
 
+p.explanation {
+    font-size: 0.8em;
+    font-style: italic;
+}
+
 @media print {
     body {
         background-color: #FFF;

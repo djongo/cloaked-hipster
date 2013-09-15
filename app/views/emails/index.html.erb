@@ -1,13 +1,17 @@
 <h1>Listing Emails</h1>
+<div class="well">
+Here you can modify the content of the emails sent to the HBSC responsible author as the publication progresses through the workflow.
+</div>
 
-<table id="master_data" class="table table-striped table-bordered">
+
+
+  <table id="master_data" class="table table-striped table-bordered">
   <thead>
   <tr>
     <th>Trigger</th>
     <th>Subject</th>
     <th>Content</th>
-    <th>Delay</th>
-    <th></th>
+    <th>Delay*</th>
     <th></th>
   </tr>
 </thead><tbody>
@@ -18,11 +22,7 @@
     <td><%= email.content %></td>
     <td><%= email.delay %></td>
     <td><%= link_to 'Edit', edit_email_path(email) %></td>
-    <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %></tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Email', new_email_path %>
+<p class="explanation">* Delay must be greater than 0 for automatic reminders to be sent.</p>
