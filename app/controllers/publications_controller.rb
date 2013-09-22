@@ -127,7 +127,7 @@ class PublicationsController < ApplicationController
   end
 
   def list
-    @publications = Publication.paginate(:per_page => 15, :page => params[:page])
+    @publications = Publication.order(:id) #paginate(:per_page => 15, :page => params[:page])
   end
 
   # Import

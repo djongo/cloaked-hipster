@@ -6,7 +6,7 @@ class PopulationsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @populations.where("name like ?", "%#{params[:q]}%") }
+      format.json { render json: @populations.where("name ILIKE ?", "%#{params[:q]}%") }
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910210925) do
+ActiveRecord::Schema.define(:version => 20130915191329) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -69,8 +69,9 @@ ActiveRecord::Schema.define(:version => 20130910210925) do
   create_table "keywords", :force => true do |t|
     t.integer  "publication_id"
     t.integer  "variable_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+    t.integer  "publication_keyword_type", :default => 1
   end
 
   create_table "languages", :force => true do |t|

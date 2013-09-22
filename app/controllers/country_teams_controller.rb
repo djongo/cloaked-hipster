@@ -2,7 +2,7 @@ class CountryTeamsController < ApplicationController
   # GET /country_teams
   # GET /country_teams.json
   def index
-    @country_teams = CountryTeam.all
+    @country_teams = CountryTeam.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb

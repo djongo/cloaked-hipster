@@ -14,7 +14,9 @@
   <tr>
     <td>Found <%=h @publications.total_entries %> publications matching your search criteria.</td>
     <td align="right">
-      <%= link_to 'New Publication', new_publication_path if permitted_to? :new, :publications %>
+      <% if permitted_to? :new, :publications %>  
+        <%= link_to 'New Publication', new_publication_path if permitted_to? :new, :publications %> |
+      <% end %>
       <%= link_to "Download search result as spreadsheet", publications_path(:search => params[:search], :format => "xls") if permitted_to? :index, :publications %>
     </td>
   </tr>

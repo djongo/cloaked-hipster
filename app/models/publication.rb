@@ -52,12 +52,12 @@ class Publication < ActiveRecord::Base
   attr_reader :keyword_tokens
   accepts_nested_attributes_for :keywords
 
-  has_many :determinants
-  has_many :variables, :through => :determinants
-  has_many :mediators
-  has_many :variables, :through => :mediators
-  has_many :outcomes
-  has_many :variables, :through => :outcomes
+  # has_many :determinants
+  # has_many :variables, :through => :determinants
+  # has_many :mediators
+  # has_many :variables, :through => :mediators
+  # has_many :outcomes
+  # has_many :variables, :through => :outcomes
   has_many :foundations
   has_many :surveys, :through => :foundations
   attr_reader :survey_tokens
