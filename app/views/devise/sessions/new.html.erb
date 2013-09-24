@@ -1,9 +1,14 @@
-<% provide(:title, 'Sign in') %>
-<h1>Sign in</h1>
+<% title('Sign in') %>
+<h1><%= yield(:title) %></h1>
+
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal' }) do |f| %>
-  <%= f.input :email, :autofocus => true %>
-  <%= f.input :password %>
-  <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-  <%= f.button :submit, "Sign in", :class => 'btn btn-primary' %>
+  <div class="form-inputs">
+	  <%= f.input :email, :autofocus => true %>
+	  <%= f.input :password %>
+	  <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+	</div>
+  <div class="form-actions">
+  	<%= f.button :submit, "Sign in", :class => 'btn btn-primary' %>
+  </div>
 <% end %>
 <%= render "devise/shared/links" %>

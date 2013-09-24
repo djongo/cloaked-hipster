@@ -1,3 +1,44 @@
-<h3>User</h3>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<% title("User") %>
+<h1><%= yield(:title) %></h1>
+
+<table class="table table-bordered table-striped">
+  <tbody>
+    <tr>
+      <td>Email</td>
+      <td><%=h @user.email %></td>
+    </tr><tr>
+      <td>Name</td>
+      <td><%=h @user.name %></td>
+    </tr><tr>
+      <td>HBSC Member</td>
+      <td><%=h @user.hbsc_member? ? 'Yes' : 'No' %></td>
+    </tr><tr>
+      <td>Roles</td>
+      <td><%=h @user.role_symbols.join(', ').titleize %></td>
+    </tr><tr>
+      <td># Logins</td>
+      <td><%=h @user.sign_in_count %></td>
+    </tr><tr>
+      <td>Last Login</td>
+      <td>  <%=h @user.last_sign_in_at %>
+    <% if @user.last_sign_in_ip? %>
+      from IP address: <%=h @user.last_sign_in_ip %> 
+    <% end %> </td>
+    </tr><tr>
+      <td>Current Login</td>
+      <td><%=h @user.current_sign_in_at %></td>
+    </tr><tr>
+      <td>Created</td>
+      <td><%=h @user.created_at %></td>
+    </tr><tr>
+      <td>Updated</td>
+      <td><%=h @user.updated_at %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_user_path(@user) if permitted_to? :edit, :users %> |
+  <%= link_to "Destroy", @user, :confirm => 'Are you sure?', :method => :delete if permitted_to? :destroy, :users %> |
+  <%= link_to "View All", users_path if permitted_to? :index, :users %>
+</p>

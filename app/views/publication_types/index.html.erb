@@ -6,13 +6,11 @@
     <th>Name</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 </thead><tbody>
 <% @publication_types.each do |publication_type| %>
   <tr>
     <td><%= publication_type.name %></td>
-    <td><%= link_to 'Show', publication_type %></td>
     <td><%= link_to 'Edit', edit_publication_type_path(publication_type) %></td>
     <td><%= link_to 'Destroy', publication_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

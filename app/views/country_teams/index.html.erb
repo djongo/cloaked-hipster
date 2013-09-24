@@ -6,13 +6,11 @@
     <th>Name</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 </thead><tbody>
 <% @country_teams.each do |country_team| %>
   <tr>
     <td><%= country_team.name %></td>
-    <td><%= link_to 'Show', country_team %></td>
     <td><%= link_to 'Edit', edit_country_team_path(country_team) %></td>
     <td><%= link_to 'Destroy', country_team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

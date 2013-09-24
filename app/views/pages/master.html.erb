@@ -1,7 +1,5 @@
-<% provide(:title, 'Master Data') %>
-
-<h1>Master Data</h1>
-
+<% title('Master Data') %>
+<h1><%= yield(:title) %></h1>
 
 <%= @page.content %>
 
@@ -12,11 +10,11 @@
   <li><%= link_to "Languages", languages_path if permitted_to? :index, :languages %></li>
   <li><%= link_to "Survey data sets", surveys_path if permitted_to? :index, :surveys %></li>
   <li><%= link_to "Populations", populations_path if permitted_to? :index, :populations %></li>
-  <li><%= link_to "Publication Types", publication_types_path if permitted_to? :index, :publication_types %></li>
-  <li><%= link_to "Country Teams", country_teams_path if permitted_to? :index, :country_teams %></li>
-  <li><%= link_to "Focus Groups", focus_groups_path if permitted_to? :index, :focus_groups %></li>
+  <li><%= link_to "Publication types", publication_types_path if permitted_to? :index, :publication_types %></li>
+  <li><%= link_to "Country teams", country_teams_path if permitted_to? :index, :country_teams %></li>
+  <li><%= link_to "Focus groups", focus_groups_path if permitted_to? :index, :focus_groups %></li>
   <li><%= link_to "Variables", variables_path if permitted_to? :index, :variables %></li>
-  <li><%= link_to "Target Journals", target_journals_path if permitted_to? :index, :target_journals %></li>
+  <li><%= link_to "Target journals", target_journals_path if permitted_to? :index, :target_journals %></li>
   <li><%= link_to "Email texts", emails_path if permitted_to? :index, :emails %></li>
   <li><%= link_to "Users", users_path if permitted_to? :index, :users %></li>
   <li><%= link_to "Notes", notes_path if permitted_to? :index, :notes %></li>

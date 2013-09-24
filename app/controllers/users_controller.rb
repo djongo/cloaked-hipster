@@ -13,4 +13,39 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])  	
   end
+
+  def new
+    @user = User.new
+  end
+  
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to root_url, notice: "Registration successful."
+    else
+      render :action => 'new'
+    end
+  end
+  def edit
+      @user = User.find(params[:id])
+#    if @user.roles.include?("publication_group")
+#      @user = User.find(params[:id])
+#    else
+#      @user = current_user
+#    end
+  end
+  
+  def update
+      @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Successfully updated profile."
+      if(current_user.roles.include?("publication_group"))
+        redirect_to users_url
+       else
+        redirect_to root_url
+       end
+     else
+      render :action => 'edit'
+    end
+  end  
 end

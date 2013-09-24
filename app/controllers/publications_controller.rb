@@ -127,7 +127,19 @@ class PublicationsController < ApplicationController
   end
 
   def list
-    @publications = Publication.order(:id) #paginate(:per_page => 15, :page => params[:page])
+    @publications = Publication.order(:id) #.paginate(:per_page => 15, :page => params[:page])
+  end
+
+  def archive
+    @publication = Publication.find(params[:id])
+    @publication.update_attribute :archived, true
+    redirect_to list_publications_path, notice: "Publication archived."
+  end
+  
+  def unarchive
+    @publication = Publication.find(params[:id])
+    @publication.update_attribute :archived, false
+    redirect_to list_publications_path, notice: "Publication removed from archive to active status."
   end
 
   # Import

@@ -1,0 +1,10 @@
+<% title "Edit User" %>
+<h1><%= yield(:title) %></h1>
+<%= render 'form' %>
+
+<p>
+  <%= link_to "Show", :user if permitted_to? :show, :users %>
+  <% if permitted_to? :index, :users %>
+    |  <%= link_to "View All", users_path  %>
+  <% end %>
+</p>
