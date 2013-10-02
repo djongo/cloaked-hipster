@@ -18,7 +18,7 @@
     <div class="line_of_boxes">
       <div class="box_in_line">
         <%= f.label :keyword_tokens, "Keywords" %>
-        <%= f.text_field :keyword_tokens, data: {load: @publication.variables } %>
+        <%= f.text_field :keyword_tokens, data: {load: @publication.keyword_variables } %>
       </div>
       <div class="box_bottom"></div>
     </div>
@@ -64,6 +64,27 @@ use [drag] to change author order
   </div>
   <div class="box_bottom"></div>
 </div>
+
+<h3>Variables</h3>
+ <div class="line_of_boxes">
+  <div class="box_in_line">
+    <%= f.label :outcome_tokens, "Outcome measure(s):" %>
+    <%= f.text_field :outcome_tokens, data: {load: @publication.outcome_variables } %>
+  </div>
+
+  <div class="box_in_line">
+    <%= f.label :determinant_tokens, "Determinant(s):" %>
+    <%= f.text_field :determinant_tokens, data: {load: @publication.determinant_variables } %>
+  </div>
+  
+  <div class="box_in_line">
+    <%= f.label :mediator_tokens, "Other key variables:" %>
+    <%= f.text_field :mediator_tokens, data: {load: @publication.mediator_variables } %>
+  </div>
+  
+   <div class="box_bottom"></div>
+</div>
+
 <h3>Reference</h3>
   <%= f.input :reference, as: :text, input_html: { cols: 60, rows: 5 } %>
   <%= f.input :url %>

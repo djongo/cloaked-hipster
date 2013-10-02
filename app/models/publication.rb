@@ -24,7 +24,7 @@ class Publication < ActiveRecord::Base
     :title, :url, :user_id, :keyword_tokens, :survey_tokens, 
     :population_tokens, :target_journal_name, :authors_attributes, 
     :keywords, :mediators, :outcomes, :determinants, :inclusions,
-    :foundations
+    :foundations, :outcome_tokens, :determinant_tokens, :mediator_tokens
   
   include AASM
 
@@ -36,8 +36,6 @@ class Publication < ActiveRecord::Base
   #   :inclusions => Proc.new { |publication|  publication.inclusions_list },    
   #   :foundations => Proc.new { |publication|  publication.foundations_list }            
   #   }
-
-  # after_save :keyword_tokens
   
   belongs_to :language
   belongs_to :publication_type
@@ -47,17 +45,17 @@ class Publication < ActiveRecord::Base
 	has_many :notes, :dependent => :destroy
 
   has_many :keywords
-  has_many :variables, :through => :keywords
-  # has_many :keyword_variables, :through => :keywords, :source => :variable
+  has_many :keyword_variables, through: :keywords, source: :variable
   attr_reader :keyword_tokens
-  accepts_nested_attributes_for :keywords
-
-  # has_many :determinants
-  # has_many :variables, :through => :determinants
-  # has_many :mediators
-  # has_many :variables, :through => :mediators
-  # has_many :outcomes
-  # has_many :variables, :through => :outcomes
+  has_many :determinants
+  has_many :determinant_variables, :through => :determinants, source: :variable
+  attr_reader :determinant_tokens
+  has_many :mediators
+  has_many :mediator_variables, :through => :mediators, source: :variable
+  attr_reader :mediator_tokens
+  has_many :outcomes
+  has_many :outcome_variables, :through => :outcomes, source: :variable
+  attr_reader :outcome_tokens
   has_many :foundations
   has_many :surveys, :through => :foundations
   attr_reader :survey_tokens
@@ -69,62 +67,23 @@ class Publication < ActiveRecord::Base
   accepts_nested_attributes_for :authors, allow_destroy: true
 
   validates_presence_of :title, :language_id, :publication_type_id, :user_id
-
-  # accepts_nested_attributes_for :keywords,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['variable_name'].blank? }
-  # accepts_nested_attributes_for :target_journal,
-  #                               :allow_destroy => false,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['target_journal_name'].blank? }
-  # accepts_nested_attributes_for :keywords,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['variable_name'].blank? }
-  # accepts_nested_attributes_for :determinants,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['variable_name'].blank? }
-  # accepts_nested_attributes_for :mediators,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['variable_name'].blank? }
-  # accepts_nested_attributes_for :outcomes,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['variable_name'].blank? } 
-  # accepts_nested_attributes_for :foundations,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['survey_name'].blank? &&
-  #                                 attrs['survey_id'].blank? }
-  # accepts_nested_attributes_for :inclusions,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['population_name'].blank? &&
-  #                                 attrs['population_id'].blank? }
-  # accepts_nested_attributes_for :authors,
-  #                               :allow_destroy => true,
-  #                               :reject_if => proc { |attrs|
-  #                               attrs['name'].blank? &&
-  #                                 attrs['user_id'].blank? }     
-  # accepts_nested_attributes_for :notes,
-  #                               :reject_if => lambda { |a| a[:content].blank? }, 
-  #                               :allow_destroy => true
   
   # Tagging methods
   def keyword_tokens=(tokens)
-    self.variable_ids = Variable.ids_from_tokens(tokens)
+    self.keyword_variable_ids = Variable.ids_from_tokens(tokens)
   end
 
-  # def keyword_variable_ids
-  #   ids = []
-  #   self.keywords.each do |k|
-  #     ids.push(k.variable_id)
-  #   end
-  #   return ids
-  # end
+  def outcome_tokens=(tokens)
+    self.outcome_variable_ids = Variable.ids_from_tokens(tokens)
+  end
+
+  def determinant_tokens=(tokens)
+    self.determinant_variable_ids = Variable.ids_from_tokens(tokens)
+  end
+
+  def mediator_tokens=(tokens)
+    self.mediator_variable_ids = Variable.ids_from_tokens(tokens)
+  end
 
   def survey_tokens=(ids)
     self.survey_ids = ids.split(",")

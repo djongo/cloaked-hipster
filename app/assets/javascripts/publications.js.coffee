@@ -3,12 +3,25 @@ jQuery ->
 		theme: 'facebook',
 		prePopulate: $('#publication_keyword_tokens').data('load'),
 		preventDuplicates: true
+	
+	$('#publication_outcome_tokens').tokenInput '/variables.json',
+		theme: 'facebook',
+		prePopulate: $('#publication_outcome_tokens').data('load'),
+		preventDuplicates: true
 
-jQuery ->
+	$('#publication_determinant_tokens').tokenInput '/variables.json',
+		theme: 'facebook',
+		prePopulate: $('#publication_determinant_tokens').data('load'),
+		preventDuplicates: true
+
+	$('#publication_mediator_tokens').tokenInput '/variables.json',
+		theme: 'facebook',
+		prePopulate: $('#publication_mediator_tokens').data('load'),
+		preventDuplicates: true
+
   $('#publication_target_journal_name').autocomplete
     source: $('#publication_target_journal_name').data('autocomplete-source')
 
-jQuery ->
 	$('form').on 'click', '.remove_fields', (event) ->
 		$(this).prev('input[type=hidden]').val('1')
 		$(this).closest('fieldset').hide()
