@@ -83,7 +83,7 @@ module PumaApp
     # or load models when precompiling your assets.
     config.assets.initialize_on_precompile = false
 
-    config.middleware.use "PDFKit::Middleware", print_media_type: true
+    config.middleware.use "PDFKit::Middleware", :print_media_type => true
     # config.middleware.use WickedPdf::Middleware
 
   end
