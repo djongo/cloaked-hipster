@@ -55,14 +55,16 @@ class PublicationsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @publication }
       # wicked_pdf
-#       format.pdf do
-#         render  :pdf => @publication.title,
-# #                :template => "views/publications/publication.pdf.erb",
-# #                :stylesheets => ["application","print"],
-#                 :layout => "pdf.html",
-#                 :page_size => 'A4'
-#                 # :wkhtmltopdf  => Rails.root.join('vendor', 'wkhtmltopdf-amd64').to_s
-#       end      
+      format.pdf do
+        render  :pdf => @publication.title,
+               template: "publications/publication.pdf.erb",
+#                :stylesheets => ["application","print"],
+                # :layout => "pdf.html",
+                page_size: 'A4',
+                disposition: 'inline',
+                orientation: 'Landscape'
+                # :wkhtmltopdf  => Rails.root.join('vendor', 'wkhtmltopdf-amd64').to_s
+      end      
     end
   end
 

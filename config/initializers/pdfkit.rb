@@ -22,7 +22,7 @@ ActionController::Base.asset_host = Proc.new { |source, request|
 PDFKit.configure do |config|     
 	if RUBY_PLATFORM = ~/linux/
 		wkhtmltopdf_executable = 'wkhtmltopdf-amd64'
-		config.wkhtmltopdf = Rails.root.join('vendor', 'wkhtmltopdf-amd64').to_s
+		config.wkhtmltopdf = Rails.root.join('vendor', 'bin', wkhtmltopdf_executable).to_s
 	# else
 		# wkhtmltopdf_executable = 'wkhtmltopdf'
 		# config.wkhtmltopdf = Rails.root.join('vendor', 'wkhtmltopdf-amd64').to_s

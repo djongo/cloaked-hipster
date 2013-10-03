@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  </head>
+  <body onload='number_pages'>
+
+    <div id="content">
+      <center><strong>HBSC <%=h @publication.state.humanize %> Scientific Publication</strong></center>
+      <% if @publication.archived %>
+        <font style="letter-spacing:2px;font-weight:bold;color:red;">Archived</font>
+      <% end %>
+
+      <hr/>
+      <table width="100%">
+        <tr>
+          <td align="left">
+            <strong>Publication ID:</strong> <%=h @publication.id %>
+          </td>
+          <td align="center">
+            <strong>Created at:</strong> <%=h @publication.created_at.strftime('%Y-%m-%d') %>
+          </td>
+          <td align="right">
+            <strong>Updated at:</strong> <%=h @publication.updated_at.strftime('%Y-%m-%d') %>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <% if @publication.state == "published" %>
+              <strong>Title:</strong>
+            <% else %>
+              <strong>Working Title:</strong>
+            <% end %>
+            <%=h @publication.title %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <strong>Type of publication:</strong><%=h @publication.publication_type.name %>
+          </td>
+          <td>
+            <strong>Language:</strong><%=h @publication.language.name %>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <strong>Keywords:</strong>
+            <%=h @publication.keywords.map(&:variable_name).join(', ') %>
+          </td>
+        </tr>
+
+
+      </table>
+
+
+      
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -20,7 +20,7 @@ gem 'flying-sphinx', '1.0.0'
 
 gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git'
 
-# gem 'wicked_pdf', '0.9.6'
+gem 'wicked_pdf', '0.9.6'
 gem 'pdfkit', '0.5.4'
 # gem 'bcrypt-ruby', '3.0.1'
 # gem 'faker', '1.0.1'
