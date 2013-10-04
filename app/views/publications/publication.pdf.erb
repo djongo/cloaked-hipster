@@ -10,11 +10,11 @@
 
     <div id="content">
       <center><strong>HBSC Scientific Publication</strong></center>
-      <% if @publication.archived %>
-        <font style="letter-spacing:2px;font-weight:bold;color:red;">Archived</font>
-      <% end %>
 
       <hr/>
+      <% if @publication.archived %>
+        <div><font style="letter-spacing:1px;font-weight:bold;color:red;">Archived</font></div>
+      <% end %>
       <table width="100%">
         <tr>
           <td align="left" width="33%">
