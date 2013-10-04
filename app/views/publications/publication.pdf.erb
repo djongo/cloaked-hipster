@@ -20,7 +20,7 @@
           <td align="left">
             <strong>Publication ID:</strong> <%=h @publication.id %>
           </td>
-          <td align="center">
+          <td>
             <strong>Created at:</strong> <%=h @publication.created_at.strftime('%Y-%m-%d') %>
           </td>
           <td align="right">
@@ -55,16 +55,13 @@
           </td>
         </tr>
 
+        <tr>
+          <td colspan="3">
+            <strong>Abstract:</strong> <%=h @publication.abstract %>
+          </td>
+        </tr>
 
       </table>
-
-
-      
-
-
-
-
-
     </div>
   </body>
 </html>
