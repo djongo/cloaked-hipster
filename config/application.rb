@@ -82,6 +82,7 @@ module PumaApp
     # For Heroku: forcing application to not access the DB
     # or load models when precompiling your assets.
     config.assets.initialize_on_precompile = false
+    config.assets.precompile += ['pdf.css']
 
     # config.middleware.use "PDFKit::Middleware", :print_media_type => true
     # config.middleware.use WickedPdf::Middleware
