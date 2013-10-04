@@ -9,7 +9,7 @@
   <body onload='number_pages'>
 
     <div id="content">
-      <center><strong>HBSC <%=h @publication.state.humanize %> Scientific Publication</strong></center>
+      <center><strong>HBSC Scientific Publication</strong></center>
       <% if @publication.archived %>
         <font style="letter-spacing:2px;font-weight:bold;color:red;">Archived</font>
       <% end %>
@@ -17,13 +17,13 @@
       <hr/>
       <table width="100%">
         <tr>
-          <td align="left">
+          <td align="left" width="33%">
             <strong>Publication ID:</strong> <%=h @publication.id %>
           </td>
-          <td>
+          <td width="33%">
             <strong>Created at:</strong> <%=h @publication.created_at.strftime('%Y-%m-%d') %>
           </td>
-          <td align="right">
+          <td align="right" width="33%">
             <strong>Updated at:</strong> <%=h @publication.updated_at.strftime('%Y-%m-%d') %>
           </td>
         </tr>
@@ -49,7 +49,7 @@
         </tr>
 
         <tr>
-          <td>
+          <td colspan="3">
             <strong>Keywords:</strong>
             <%=h @publication.keywords.map(&:variable_name).join(', ') %>
           </td>
@@ -60,6 +60,110 @@
             <strong>Abstract:</strong> <%=h @publication.abstract %>
           </td>
         </tr>
+
+        <tr>
+          <td colspan="3"><strong>Author(s):</strong>
+            <table class="border" width="100%" style="border:1px solid grey;border-collapse:collapse;">
+              <% if @publication.authors %>              
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Country Team</th>
+                  <th>Focus Group</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @publication.authors.each do |author| %>
+                  <tr>
+                    <td><%=h author.name %></td>
+                    <td><%=h author.email %></td>
+                    <td>
+                      <% unless author.country_team_id.nil? %>
+                        <%=h author.country_team.name %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% unless author.focus_group_id.nil? %>
+                        <%=h author.focus_group.name %>
+                      <% end %>   
+                    </td>     
+                  </tr>
+                <% end %>
+              <% end %>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3"><strong>HBSC responsible author:</strong>
+            <%=h @publication.user.name %> <strong>Email:</strong> <%=h @publication.user.email %>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3"><strong>Survey Data: </strong><%=h @publication.foundations.map(&:survey_name).join(', ') %></td>
+        </tr>
+
+        <tr>
+          <td colspan="3"><strong>Populations: </strong><%=h @publication.inclusions.map(&:population_name).join(', ') %></td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <strong>Outcome measure(s):</strong>
+            <%=h @publication.outcomes.map(&:variable_name).join(', ') %>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <strong>Determinant(s):</strong>
+            <%=h @publication.determinants.map(&:variable_name).join(', ') %>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">
+            <strong>Other key variable(s):</strong>
+            <%=h @publication.mediators.map(&:variable_name).join(', ') %>
+          </td>
+        </tr>                
+
+        <tr>
+          <td colspan="3">
+            <strong>Target Journal:</strong>
+            <% if @publication.target_journal %>
+              <%=h @publication.target_journal.name %>
+            <% end %>
+          </td>
+        </tr>  
+
+        <tr>
+          <td colspan="3">
+            <strong>Publication URL:</strong>
+            <% if @publication.url %>
+              <%=h @publication.url %>
+            <% end %>
+          </td>
+        </tr>  
+
+        <tr>
+          <td colspan="3">
+            <strong>Reference/Citation:</strong>
+            <% if @publication.reference %>
+              <%=h @publication.reference %>
+            <% end %>
+          </td>
+        </tr>  
+
+        <tr>
+          <td colspan="3">
+            <strong>Current State:</strong>
+              <%=h @publication.state.humanize %>
+          </td>
+        </tr>  
 
       </table>
     </div>

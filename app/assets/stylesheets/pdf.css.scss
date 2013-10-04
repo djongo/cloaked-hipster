@@ -1,4 +1,15 @@
 table { 
-    border-spacing:0;
-    border-collapse:collapse;
+    border-spacing: 5px 10px;
+    border-collapse: seperate;
+    padding: 10px;
+}
+
+.border td, th {
+	border-left: 1px lightgrey solid;
+	border-right: 1px lightgrey solid;
+}
+
+.border tr {
+	border-bottom: 1px lightgrey solid;
+	border-top: 1px lightgrey solid;
 }
