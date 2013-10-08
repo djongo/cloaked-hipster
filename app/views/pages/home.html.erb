@@ -1,6 +1,6 @@
 <h1>Home</h1>
 
-<% @page.content %>
+<%=raw @page.content %>
 
 <% if current_user %>
   <% if !@pending.nil? %>
@@ -48,7 +48,14 @@
     <% end %>
   <% end %>
 <% end %>
+<h1>Search</h1>
 
+<%= form_tag publications_path, :method => :get do %>
+<%= text_field_tag :search, params[:search], :size => 50, :autofocus => true %>
+      <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
+  
+  <p class="explanation">Searching will take you to the publications search page.</p>
+<% end %>
   <% if current_user.roles.include?("author") && !@publication.empty? %>
   <p>Your publications:</p>
     <table class="table table-striped table-bordered">
@@ -79,12 +86,3 @@
   <% end %>
 
 <% end %>  
-
-<h1>Search</h1>
-
-<%= form_tag publications_path, :method => :get do %>
-<%= text_field_tag :search, params[:search], :size => 50, :autofocus => true %>
-      <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %>
-  
-  <p class="explanation">Searching will take you to the publications search page.</p>
-<% end %>

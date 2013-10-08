@@ -1,5 +1,6 @@
 jQuery -> 
 	$('#master_data').dataTable
+		bRetrieve: true	
 		sPaginationType: "bootstrap"
 		aaSorting: []
 		sDom: "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
