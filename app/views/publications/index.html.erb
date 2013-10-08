@@ -6,7 +6,7 @@
   <tr>
     <td>Enter search term:<%= text_field_tag :search, params[:search], :size => 50, :autofocus => true %>
     <%= submit_tag "Search", :name => nil, :class => "btn btn-primary" %> </td>
-    <td align=right>Publications per page: <%= select_tag :per_page, options_for_select([5,10,20,50,100], params[:per_page].to_i, { size: 1 } ) %></td>
+    <td align=right>Publications per page: <%= select_tag :per_page, options_for_select([5,10,20,50,100], params[:per_page].to_i), { size: 1 }  %></td>
   </tr>
 </table> 
 
