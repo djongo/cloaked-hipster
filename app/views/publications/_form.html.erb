@@ -27,7 +27,7 @@
       <%= f.input :publication_type_id, collection: PublicationType.all, prompt: "Select one..." %>
     </td>
     <td>
-      <%= f.input :language_id, collection: Language.all, prompt: "Select one..." %>
+      <%= f.input :language_id, collection: Language.all, input_html: { size: 1 } %>
     </td>
   </tr>
 </table>  
