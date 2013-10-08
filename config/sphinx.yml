@@ -1,5 +1,6 @@
 production:
   version: '2.1.0'
+	enable_star: true
 
 development:
 	enable_star: true
