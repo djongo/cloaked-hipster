@@ -24,7 +24,7 @@
     </div>
     </td>
     <td>
-      <%= f.input :publication_type_id, collection: PublicationType.all, prompt: "Select one..." %>
+      <%= f.input :publication_type_id, collection: PublicationType.all, input_html: { size: 1 } %>
     </td>
     <td>
       <%= f.input :language_id, collection: Language.all, input_html: { size: 1 } %>
@@ -43,7 +43,7 @@ use [drag] to change author order
 <%= link_to_add_fields "Add Author", f, :authors %>
 
 <h3>Contacts</h3>
-<%= f.input :user_id, label: "HBSC Responsible Author", collection: User.all %>
+<%= f.input :user_id, label: "HBSC Responsible Author", collection: User.all, input_html: { size: 1 } %>
 
 <h3>Data</h3>   
 <div class="line_of_boxes">
