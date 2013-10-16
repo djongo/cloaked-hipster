@@ -56,7 +56,7 @@ end
 # Load Focus Groups
 puts 'Focus Groups'
 ["Bullying writing group","Eating & dieting","Electronic Media Group","Family culture","Gender writing group","Medicine use writing group","Methodology Development Group","Overweight writing group","Peer culture","Physical activity","Policy Development Group","Positive health","Pubetal status & timing","Risk behaviour","School setting","Sexual health","Social inequalities","Violence & injuries"].each do |ftype|
-  PublicationType.find_or_create_by_name(ftype)
+  FocusGroup.find_or_create_by_name(ftype)
 end
 
 

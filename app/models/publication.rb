@@ -264,10 +264,11 @@ class Publication < ActiveRecord::Base
       
       if authors != nil
         authors_arr = authors.split(",")
+        author_counter = 0
         authors_arr.each do |a|
           author = Author.new
           author.name = a.strip
-          author.position = authors_arr.index(a+1)
+          author.position = author_counter
           author.publication_id = publication.id
           if given_country_team_id
             author.country_team_id = given_country_team_id
@@ -275,6 +276,7 @@ class Publication < ActiveRecord::Base
           unless existing_authors.include? author.name
             author.save!
           end
+          author_counter += 1
         end
       end
       
