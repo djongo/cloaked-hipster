@@ -12,21 +12,15 @@
   <%= f.text_field :title, :size => 120, :autofocus => true %>
 </p>
 
-<table>
+<table width="100%">
   <tr>
     <td>
-    <div class="line_of_boxes">
-      <div class="box_in_line">
-        <%= f.label :keyword_tokens, "Keywords" %>
-        <%= f.text_field :keyword_tokens, data: {load: @publication.keyword_variables } %>
-      </div>
-      <div class="box_bottom"></div>
-    </div>
+        <%= f.input :keyword_tokens, label: "Keywords", input_html: { data: {load: @publication.keyword_variables } } %>
     </td>
-    <td>
+    <td width="25%">
       <%= f.input :publication_type_id, collection: PublicationType.all, input_html: { size: 1 } %>
     </td>
-    <td>
+    <td width="25%">
       <%= f.input :language_id, collection: Language.all, input_html: { size: 1 } %>
     </td>
   </tr>
@@ -34,8 +28,8 @@
     <%= f.input :abstract, as: :text, input_html: { cols: 60, rows: 5 }  %>
 
 <h3>Author(s)</h3>
-use [drag] to change author order
-<ul id="authors" data-update-url="<%= sort_authors_url %>">
+<p class="explanation">use [drag] to change author order</div>
+<ul id="authors" data-update-url="<%= sort_authors_url %>" class="author-inline">
   <%= f.simple_fields_for :authors do |builder| %>
     <%= render 'author_fields', f: builder %>
   <% end %>
@@ -94,6 +88,9 @@ use [drag] to change author order
 </div>
 
 <div class="form-actions">
-  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= f.submit 'Save', class: "btn btn-primary" %>
+  <% if @publication.new_record? %>
+    <%= f.submit 'Save and Submit', class: "btn btn-primary", name: 'save_and_submit' %>
+  <% end %>
 </div>
 <% end %>

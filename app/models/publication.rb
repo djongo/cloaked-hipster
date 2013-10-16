@@ -24,18 +24,20 @@ class Publication < ActiveRecord::Base
     :title, :url, :user_id, :keyword_tokens, :survey_tokens, 
     :population_tokens, :target_journal_name, :authors_attributes, 
     :keywords, :mediators, :outcomes, :determinants, :inclusions,
-    :foundations, :outcome_tokens, :determinant_tokens, :mediator_tokens
+    :foundations, :outcome_tokens, :determinant_tokens, :mediator_tokens, :keywords_yml
   
   include AASM
 
-  # has_paper_trail   :meta => { 
-  #   :keywords => Proc.new { |publication|  publication.hmt_list(publication.keywords) },
-  #   :mediators => Proc.new { |publication|  publication.hmt_list(publication.mediators) }, 
-  #   :outcomes => Proc.new { |publication|  publication.hmt_list(publication.outcomes) },    
-  #   :determinants => Proc.new { |publication|  publication.hmt_list(publication.determinants) },   
-  #   :inclusions => Proc.new { |publication|  publication.inclusions_list },    
-  #   :foundations => Proc.new { |publication|  publication.foundations_list }            
-  #   }
+  has_paper_trail 
+  # meta: { keywords_yml: Proc.new { |publication| publication.hmt_list(publication.keywords) } }
+   # :meta => { 
+   #  :keywords => Proc.new { |publication|  publication.hmt_list(publication.keywords) },
+   #  :mediators => Proc.new { |publication|  publication.hmt_list(publication.mediators) }, 
+   #  :outcomes => Proc.new { |publication|  publication.hmt_list(publication.outcomes) },    
+   #  :determinants => Proc.new { |publication|  publication.hmt_list(publication.determinants) },   
+   #  :inclusions => Proc.new { |publication|  publication.inclusions_list },    
+   #  :foundations => Proc.new { |publication|  publication.foundations_list }            
+   #  }
   
   belongs_to :language
   belongs_to :publication_type
@@ -326,6 +328,7 @@ class Publication < ActiveRecord::Base
             user.email = rae
             user.password = "user1234"
             user.password_confirmation = "user1234"
+            user.hbsc_member = true
             user.roles_mask = 2
             user.save!
           end

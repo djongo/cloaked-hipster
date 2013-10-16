@@ -1,11 +1,20 @@
 <%= content_tag_for :li, f.object do %>
-	<span class="handle">[drag]</span>
-	<fieldset>
-	  <%= f.input :name %>
-		<%= f.input :email %>
-	  <%= f.input_field :country_team_id, collection: CountryTeam.all, prompt: "Select country team" %>
-		<%= f.input_field :focus_group_id, collection: FocusGroup.all, prompt: "Select focus group" %>
-		<%= f.hidden_field :_destroy %>
-	  <%= link_to 'Remove author', '#', class: "remove_fields" %>
-	</fieldset>
+	  <div style="display:inline-block;">
+	  	<div class="author-inline">
+	  		<span class="handle">[drag]</span>
+	  	</div>
+	  	<div class="author-inline">
+	  		<%= f.input :name, label: false, placeholder: 'Name', input_html: { class: 'input-medium' }  %>
+	  	</div>
+	  	<div class="author-inline">
+	  		<%= f.input :email, label: false, placeholder: 'Email', input_html: { class: 'input-medium' } %>
+	  	</div>
+	  	<div class="author-inline">
+	  		<%= f.input :country_team_id, collection: CountryTeam.all, prompt: "Country team", label: false, input_html: { class: 'input-medium' } %></div>
+			<div class="author-inline">
+				<%= f.input :focus_group_id, collection: FocusGroup.all, prompt: "Focus group", label: false, input_html: { class: 'input-medium' } %></div>
+			<div class="author-inline"><%= f.hidden_field :_destroy %>
+	  		<%= link_to 'Remove', '#', class: "remove_fields btn btn-danger btn-small" %>
+	  	</div>
+	  </div>
 <% end %>

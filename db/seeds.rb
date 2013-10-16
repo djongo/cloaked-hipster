@@ -14,13 +14,32 @@ admin_user.save!
 puts 'user: ' << user.name
 
 user = User.find_or_create_by_email :name => ENV['ADMIN2_NAME'].dup, :email => ENV['ADMIN2_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-admin_user = User.find_by_email('bho@si-folkesundhed.dk')
+admin_user = User.find_by_email(ENV['ADMIN2_EMAIL'])
 admin_user.roles_mask = 3
 admin_user.hbsc_member = true
 admin_user.save!
 puts 'user: ' << user.name
 
+user = User.find_or_create_by_email :name => ENV['ADMIN3_NAME'].dup, :email => ENV['ADMIN3_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+admin_user = User.find_by_email(ENV['ADMIN3_EMAIL'])
+admin_user.roles_mask = 3
+admin_user.hbsc_member = true
+admin_user.save!
+puts 'user: ' << user.name
 
+user = User.find_or_create_by_email :name => ENV['ADMIN4_NAME'].dup, :email => ENV['ADMIN4_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+admin_user = User.find_by_email(ENV['ADMIN4_EMAIL'])
+admin_user.roles_mask = 3
+admin_user.hbsc_member = true
+admin_user.save!
+puts 'user: ' << user.name
+
+user = User.find_or_create_by_email :name => ENV['ADMIN5_NAME'].dup, :email => ENV['ADMIN5_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+admin_user = User.find_by_email(ENV['ADMIN5_EMAIL'])
+admin_user.roles_mask = 3
+admin_user.hbsc_member = true
+admin_user.save!
+puts 'user: ' << user.name
 
 # Load languages
 puts 'Languages'
@@ -34,10 +53,17 @@ puts 'Publication Types'
   PublicationType.find_or_create_by_name(ptype)
 end
 
+# Load Focus Groups
+puts 'Focus Groups'
+["Bullying writing group","Eating & dieting","Electronic Media Group","Family culture","Gender writing group","Medicine use writing group","Methodology Development Group","Overweight writing group","Peer culture","Physical activity","Policy Development Group","Positive health","Pubetal status & timing","Risk behaviour","School setting","Sexual health","Social inequalities","Violence & injuries"].each do |ftype|
+  PublicationType.find_or_create_by_name(ftype)
+end
+
+
 # Load Pages
 puts 'PAGES'
 if Page.find_by_title('home').nil?
-  Page.create! :title => 'home', :content => ''
+  Page.create! :title => 'home', :content => 'This is the home page'
 end
 
 if Page.find_by_title('about').nil?
@@ -49,7 +75,7 @@ if Page.find_by_title('contact').nil?
 end
 
 if Page.find_by_title('master data').nil?
-  Page.create! :title => 'master data', :content => ''
+  Page.create! :title => 'master data', :content => 'This is the master data page'
 end
 
 # # Load standard email texts

@@ -279,11 +279,12 @@ p.explanation {
 }
 
 #version_box {
-  width: 75%;
+/*  width: 75%;
   background-color: #FFD700;
   border: solid 1px #B8860B;
   padding: 5px 8px;
   margin: 10px 0;  
+  */
 }
 
 #help_explanation_box {
@@ -354,4 +355,14 @@ div.dataTables_filter {
 
 .collapse {
   overflow: visible;
+}
+
+/* inline author form */
+div.author-inline {
+  float:left;
+  padding-right:5px;
+  vertical-align:middle;
+}
+ul.author-inline {
+  list-style-type:none;
 }

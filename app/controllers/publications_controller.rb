@@ -91,8 +91,14 @@ class PublicationsController < ApplicationController
 
     respond_to do |format|
       if @publication.save
-        format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
-        format.json { render json: @publication, status: :created, location: @publication }
+        if params[:save_and_submit]
+          @publication.preplanned_submit!
+          format.html { redirect_to @publication, 
+             notice: 'Publication was successfully created and submitted to the publication group.' }
+        else
+          format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
+          format.json { render json: @publication, status: :created, location: @publication }
+        end 
       else
         format.html { render action: "new" }
         format.json { render json: @publication.errors, status: :unprocessable_entity }
@@ -107,7 +113,7 @@ class PublicationsController < ApplicationController
 
     respond_to do |format|
       if @publication.update_attributes(params[:publication])
-        format.html { redirect_to @publication, notice: 'Publication was successfully updated.' }
+        format.html { redirect_to @publication, notice: 'Publication was successfully updated. Please note that it has been submitted to the publication group.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
