@@ -2,24 +2,35 @@
 
 <table width="100%">
   <tr>
+    <td width="15%" style="vertical-align:top;">
+      <% if @publication.state != "published" %>
+        <strong>Working Title:</strong>
+      <% else %>
+        <strong>Title</strong>
+      <% end %>
+    </td>
+    <td><%=h @publication.title %></td>
+    
+  </tr><tr>
     <td>
-      <strong>Title:</strong> <%=h @publication.title %>
+      <strong>ID:</strong><td><%=h @publication.id %></td>
     </td>
+  </tr><tr>
     <td>
-      <strong>ID:</strong> <%=h @publication.id %>
+      <strong>Created at:</strong><td><%=h @publication.created_at.strftime('%Y-%m-%d') %></td>
     </td>
+  </tr><tr>
     <td>
-      <strong>Created at:</strong> <%=h @publication.created_at.strftime('%Y-%m-%d') %>
+      <strong>Updated at:</strong><td><%=h @publication.updated_at.strftime('%Y-%m-%d') %></td>
     </td>
-    <td align="right">
-      <strong>Updated at:</strong> <%=h @publication.updated_at.strftime('%Y-%m-%d') %>
-    </td>
-<% if @publication.archived %>
-    <td align="right">
-      <font style="letter-spacing:2px;font-weight:bold;color:red;">Archived</font>
-    </td>           
-<% end %>
   </tr>
+<% if @publication.archived %>
+  <tr>  
+    <td colspan="2">
+      <font style="letter-spacing:2px;font-weight:bold;color:red;">Archived</font>
+    </td>
+  </tr>  
+<% end %>
 </table>
 
 <p id="pdf_link">
@@ -83,7 +94,7 @@
     </tr>
      <% @publication.authors.each do |a| %>
      <tr>
-      <td><%=h (a.position+1).ordinalize %></td>
+      <td><%=h (a.number+1).ordinalize %></td>
       <td><%=h a.name %></td>
       <td><%=h a.email %></td>
       <td>

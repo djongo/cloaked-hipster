@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.order(:publication_id,:position)
+    @authors = Author.order(:publication_id,:number)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,7 +83,7 @@ class AuthorsController < ApplicationController
   
   def sort
     params[:author].each_with_index do |id, index|
-      Author.update_all({position: index+1}, {id: id})
+      Author.update_all({number: index+1}, {id: id})
     end
     render nothing: true
   end

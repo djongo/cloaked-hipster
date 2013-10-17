@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :author do
     name "MyString"
     email "MyString"
-    position 1
+    number 1
     publication_id 1
     country_team_id 1
     focus_group_id 1

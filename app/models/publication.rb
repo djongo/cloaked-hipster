@@ -65,7 +65,7 @@ class Publication < ActiveRecord::Base
   has_many :populations, :through => :inclusions
   attr_reader :population_tokens
 
-  has_many :authors, :order => "position", :dependent => :destroy
+  has_many :authors, :order => "number", :dependent => :destroy
   accepts_nested_attributes_for :authors, allow_destroy: true
 
   validates_presence_of :title, :language_id, :publication_type_id, :user_id
@@ -261,22 +261,18 @@ class Publication < ActiveRecord::Base
           existing_authors.push( ea.name )
         end
       end
-      
+
       if authors != nil
         authors_arr = authors.split(",")
-        author_counter = 0
         authors_arr.each do |a|
-          author = Author.new
-          author.name = a.strip
-          author.position = author_counter
-          author.publication_id = publication.id
-          if given_country_team_id
-            author.country_team_id = given_country_team_id
+          unless existing_authors.include? a.strip
+            # author = Author.new
+            # author.name = a.strip
+            # author.number = authors_arr.index(a)
+            # author.publication_id = publication.id
+            # author.country_team_id = given_country_team_id
+            Author.create name: a.strip, number: authors_arr.index(a), publication_id: publication.id, country_team_id: given_country_team_id
           end
-          unless existing_authors.include? author.name
-            author.save!
-          end
-          author_counter += 1
         end
       end
       
