@@ -1,7 +1,8 @@
 <h1>Home</h1>
 
-<%=raw @page.content %>
-
+<% if @page.content? %>
+  <%=raw @page.content %>
+<% end %>
 <% if current_user %>
   <% if !@pending.nil? %>
     <% if !@pending.empty? %>
