@@ -54,4 +54,4 @@
 </p>
 <br />
 
-<%= link_to 'New Publication', new_publication_path %>
+<%= link_to 'New Publication', new_publication_path if permitted_to? :new, :publications %>
