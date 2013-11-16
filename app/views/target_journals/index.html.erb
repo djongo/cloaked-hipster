@@ -4,8 +4,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Edit</th>
-      <th>Destroy</th>
+      <th class="text-right">Used in # articles</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -13,8 +14,9 @@
   <% @target_journals.each do |target_journal| %>
     <tr>
       <td><%= target_journal.name %></td>
-      <td><%= link_to 'Edit', edit_target_journal_path(target_journal) %></td>
-      <td><%= link_to 'Destroy', target_journal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td class="text-right"><%= Publication.count(conditions: { target_journal_id: target_journal.id } ) %></td>      
+      <td class="text-right"><%= link_to 'Edit', edit_target_journal_path(target_journal) %></td>
+      <td class="text-right"><%= link_to 'Destroy', target_journal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   </tbody>

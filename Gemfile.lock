@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/airblade/paper_trail.git
-  revision: eb01ca30c6892c3676b6387831dae2e199aa32ad
-  specs:
-    paper_trail (3.0.0.beta2)
-      activerecord (>= 3.0, < 5.0)
-
-GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
   revision: 494f752b8eb8350f33841c822a67d014c869219f
   specs:
@@ -170,6 +163,9 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    paper_trail (2.7.2)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     pdfkit (0.5.4)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -306,7 +302,7 @@ DEPENDENCIES
   launchy
   meta_request
   mysql2 (= 0.3.13)
-  paper_trail!
+  paper_trail (= 2.7.2)
   pdfkit (= 0.5.4)
   pg (= 0.15.1)
   rails (= 3.2.14)

@@ -4,6 +4,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th class="text-right">Used for # authors</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,8 +12,9 @@
 <% @country_teams.each do |country_team| %>
   <tr>
     <td><%= country_team.name %></td>
-    <td><%= link_to 'Edit', edit_country_team_path(country_team) %></td>
-    <td><%= link_to 'Destroy', country_team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="text-right"><%= Author.count(conditions: { country_team_id: country_team.id } ) %></td>
+    <td class="text-right"><%= link_to 'Edit', edit_country_team_path(country_team) %></td>
+    <td class="text-right"><%= link_to 'Destroy', country_team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>

@@ -18,7 +18,7 @@ gem 'simple_form', '2.1.0'
 gem 'thinking-sphinx', '3.0.5'
 gem 'flying-sphinx', '1.0.0'
 
-gem 'paper_trail', git: 'git://github.com/airblade/paper_trail.git'
+gem 'paper_trail', '2.7.2' #git: 'git://github.com/airblade/paper_trail.git'
 
 gem 'wicked_pdf', '0.9.6'
 gem 'pdfkit', '0.5.4'

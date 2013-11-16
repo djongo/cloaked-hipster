@@ -42,19 +42,13 @@
 <h3>Data</h3>   
 <div class="line_of_boxes">
   <div class="box_in_line">
-    Survey data
-    <div id="foundation_children" class="box_in_line_content">
         <%= f.label :survey_tokens, "Surveys" %>
         <%= f.text_field :survey_tokens, data: {load: @publication.surveys } %>
-    </div>
   </div>
   
   <div class="box_in_line">
-    Population(s):
-    <div id="inclusion_children" class="box_in_line_content">
         <%= f.label :population_tokens, "Populations" %>
         <%= f.text_field :population_tokens, data: {load: @publication.populations } %>
-    </div>      
   </div>
   <div class="box_bottom"></div>
 </div>

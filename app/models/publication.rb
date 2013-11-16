@@ -19,6 +19,8 @@
 #
 
 class Publication < ActiveRecord::Base
+  include AASM
+
   attr_accessible :abstract, :archived, :change, :language_id, 
     :publication_type_id, :reference, :state, :target_journal_id, 
     :title, :url, :user_id, :keyword_tokens, :survey_tokens, 
@@ -26,25 +28,22 @@ class Publication < ActiveRecord::Base
     :keywords, :mediators, :outcomes, :determinants, :inclusions,
     :foundations, :outcome_tokens, :determinant_tokens, :mediator_tokens, :keywords_yml
   
-  include AASM
+  has_paper_trail :meta => { 
+    :keywords => Proc.new { |publication|  publication.hmt_list(publication.keywords) },
+    :mediators => Proc.new { |publication|  publication.hmt_list(publication.mediators) }, 
+    :outcomes => Proc.new { |publication|  publication.hmt_list(publication.outcomes) },    
+    :determinants => Proc.new { |publication|  publication.hmt_list(publication.determinants) },   
+    :inclusions => Proc.new { |publication|  publication.inclusions_list },    
+    :foundations => Proc.new { |publication|  publication.foundations_list }            
+    }, :on => [:update, :destroy]  
 
-  has_paper_trail 
-  # meta: { keywords_yml: Proc.new { |publication| publication.hmt_list(publication.keywords) } }
-   # :meta => { 
-   #  :keywords => Proc.new { |publication|  publication.hmt_list(publication.keywords) },
-   #  :mediators => Proc.new { |publication|  publication.hmt_list(publication.mediators) }, 
-   #  :outcomes => Proc.new { |publication|  publication.hmt_list(publication.outcomes) },    
-   #  :determinants => Proc.new { |publication|  publication.hmt_list(publication.determinants) },   
-   #  :inclusions => Proc.new { |publication|  publication.inclusions_list },    
-   #  :foundations => Proc.new { |publication|  publication.foundations_list }            
-   #  }
-  
   belongs_to :language
   belongs_to :publication_type
   belongs_to :user
   belongs_to :target_journal
 
 	has_many :notes, :dependent => :destroy
+# remember to destroy in join tables
 
   has_many :keywords
   has_many :keyword_variables, through: :keywords, source: :variable
@@ -251,7 +250,7 @@ class Publication < ActiveRecord::Base
           tj.name = target_journal.strip
           tj.save
         end
-        publication.target_journal_id = TargetJournal.find_by_name(target_journal.strip)        
+        publication.target_journal_id = TargetJournal.find_by_name(target_journal.strip).id 
       end
 
       # Set up authors

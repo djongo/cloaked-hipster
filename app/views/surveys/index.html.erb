@@ -4,6 +4,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th class="text-right">Used in # articles</th>
     <th></th>
     <th></th>
   </tr>
@@ -12,8 +13,9 @@
 <% @surveys.each do |survey| %>
   <tr>
     <td><%= survey.name %></td>
-    <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-    <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="text-right"><%= Foundation.count(conditions: { survey_id: survey.id } ) %></td>
+    <td class="text-right"><%= link_to 'Edit', edit_survey_path(survey) %></td>
+    <td class="text-right"><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>

@@ -4,6 +4,10 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th class="text-right">Keywords usage #</th>
+    <th class="text-right">Outcomes usage #</th>
+    <th class="text-right">Determinants usage #</th>
+    <th class="text-right">Other usage #</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,8 +15,12 @@
 <% @variables.each do |variable| %>
   <tr>
     <td><%= variable.name %></td>
-    <td><%= link_to 'Edit', edit_variable_path(variable) %></td>
-    <td><%= link_to 'Destroy', variable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="text-right"><%= Keyword.count(conditions: { variable_id: variable.id } ) %></td>
+    <td class="text-right"><%= Outcome.count(conditions: { variable_id: variable.id } ) %></td>
+    <td class="text-right"><%= Determinant.count(conditions: { variable_id: variable.id } ) %></td>
+    <td class="text-right"><%= Mediator.count(conditions: { variable_id: variable.id } ) %></td>
+    <td class="text-right"><%= link_to 'Edit', edit_variable_path(variable) %></td>
+    <td class="text-right"><%= link_to 'Destroy', variable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>

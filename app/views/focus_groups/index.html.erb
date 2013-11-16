@@ -4,6 +4,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th class="text-right">Used for # authors</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,8 +12,9 @@
 <% @focus_groups.each do |focus_group| %>
   <tr>
     <td><%= focus_group.name %></td>
-    <td><%= link_to 'Edit', edit_focus_group_path(focus_group) %></td>
-    <td><%= link_to 'Destroy', focus_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="text-right"><%= Author.count(conditions: { focus_group_id: focus_group.id } ) %></td>
+    <td class="text-right"><%= link_to 'Edit', edit_focus_group_path(focus_group) %></td>
+    <td class="text-right"><%= link_to 'Destroy', focus_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>

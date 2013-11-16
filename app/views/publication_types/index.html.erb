@@ -4,6 +4,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th class="text-right">Used in # articles</th>
     <th></th>
     <th></th>
   </tr>
@@ -11,8 +12,9 @@
 <% @publication_types.each do |publication_type| %>
   <tr>
     <td><%= publication_type.name %></td>
-    <td><%= link_to 'Edit', edit_publication_type_path(publication_type) %></td>
-    <td><%= link_to 'Destroy', publication_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="text-right"><%= Publication.count(conditions: { publication_type_id: publication_type.id } ) %></td>
+    <td class="text-right"><%= link_to 'Edit', edit_publication_type_path(publication_type) %></td>
+    <td class="text-right"><%= link_to 'Destroy', publication_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>

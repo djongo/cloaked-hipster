@@ -33,7 +33,7 @@
 <% end %>
 </table>
 
-<p id="pdf_link">
+
   <% if @publication.versions.length > 1 %>
     Number of previous versions: <%=h @publication.versions.length-1 %>  
     <%= link_to_function("Show/Hide","$('#version_box').toggle();") %>
@@ -41,18 +41,15 @@
   <% else %>
   <div id="version_box" style="display:none;" class="well">
   <% end %>
-</p>
-
 <% @publication.versions.each do |version| %>
-  <% book = version.reify %>
   <% if version == @version %>
-    Version <%=h version.index.to_s %> Created at <%=h (version.created_at) %> is the version currently displayed<br />
+    Version <%=h version.index.to_s %> created at <%=h localize(version.created_at, format: :short) %> by <%=h User.find(version.whodunnit.to_i).name %> is the version currently displayed<br />
   <% elsif version.event != "create" %>
-    <%=h link_to "Version " + version.index.to_s, :version => version %> Created at <%=h (version.created_at) %> by <%=h User.find(version.whodunnit.to_i).name %><br />
+    <%=h link_to "Version " + version.index.to_s, :version => version %> created at <%=h localize(version.created_at, format: :short) %> by <%=h User.find(version.whodunnit.to_i).name %><br />
   <% end %>
 <% end %>
 <% if params[:version] %>
-  <%=h link_to "Latest version", :version => nil %> from <%=h @publication.updated_at %>
+  <%=h link_to "Latest version", :version => nil %>
 <% end %>
 </div> 
     
@@ -62,9 +59,9 @@
   <div class="box_in_line">
     Keyword(s):
     <div class="box_in_line_content">
-      <% @publication.keywords.each do |keyword| %>
+      <% @keywords.each do |keyword| %>
         <div class="child">
-            <%=h keyword.variable_name %><br />
+            <%=h keyword.name %><br />
         </div>
       <% end %>
       </div>
@@ -132,7 +129,7 @@
   <div class="box_in_line">
     Survey data:
     <div class="box_in_line_content">
-      <% @publication.foundations.each do |foundation| %>
+      <% @foundations.each do |foundation| %>
         <div class="child">
             <%=h foundation.survey_name %><br />
         </div>
@@ -142,7 +139,7 @@
   <div class="box_in_line">
     Population(s):
     <div class="box_in_line_content">
-      <% @publication.inclusions.each do |inclusion| %>
+      <% @inclusions.each do |inclusion| %>
         <div class="child">
             <%=h inclusion.population_name %><br />
         </div>
@@ -157,7 +154,7 @@
   <div class="box_in_line">
     Outcome measure(s):
     <div class="box_in_line_content">
-      <% @publication.outcomes.each do |outcome| %>
+      <% @outcomes.each do |outcome| %>
         <div class="child">
             <%=h outcome.variable_name %><br />
         </div>
@@ -168,7 +165,7 @@
   <div class="box_in_line">
     Determinant(s):
     <div class="box_in_line_content">
-      <% @publication.determinants.each do |determinant| %>
+      <% @determinants.each do |determinant| %>
       <div class="child">
           <%=h determinant.variable_name %></br />
       </div>
@@ -178,7 +175,7 @@
   <div class="box_in_line">
     Other key variables:
     <div class="box_in_line_content">
-    <% @publication.mediators.each do |mediator| %>
+    <% @mediators.each do |mediator| %>
       <div class="child">
         <%=h mediator.variable_name %><br />
       </div>
@@ -261,10 +258,4 @@
   <%= link_to "Edit", edit_publication_path(@publication) if permitted_to? :edit, :publications %> |
   <%= link_to "Destroy", @publication, :confirm => 'Are you sure?', :method => :delete if permitted_to? :destroy, :publications %> |
   <%= link_to "View All", publications_path %>
-</p>
-
-
-<p>
-  <b>Change:</b>
-  <%= @publication.change %>
 </p>

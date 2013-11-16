@@ -4,6 +4,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th class="text-right">Used in # articles</th>
     <th></th>
     <th></th>
   </tr>
@@ -12,8 +13,9 @@
 <% @populations.each do |population| %>
   <tr>
     <td><%= population.name %></td>
-    <td><%= link_to 'Edit', edit_population_path(population) %></td>
-    <td><%= link_to 'Destroy', population, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="text-right"><%= Inclusion.count(conditions: { population_id: population.id } ) %></td>
+    <td class="text-right"><%= link_to 'Edit', edit_population_path(population) %></td>
+    <td class="text-right"><%= link_to 'Destroy', population, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </tbody>

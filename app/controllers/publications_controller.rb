@@ -51,6 +51,58 @@ class PublicationsController < ApplicationController
   def show
     @publication = Publication.find(params[:id])
 
+    # Get previous version if requested
+    if params[:version]
+      @version = @publication.versions.find(params[:version])
+      @publication = @version.reify
+
+      # get hmt from meta data in versions table if available
+      if !@version.keywords.nil?
+        @keywords = Variable.find(YAML.load(@version.keywords))
+      else
+        @keywords = []
+      end
+
+      if !@version.mediators.nil?
+        @mediators = Keyword.find(YAML.load(@version.mediators))
+      else
+        @mediators = []
+      end
+
+      if !@version.outcomes.nil?
+        @outcomes = Keyword.find(YAML.load(@version.outcomes))
+      else 
+        @outcomes = []
+      end
+
+      if !@version.determinants.nil?
+        @determinants = Keyword.find(YAML.load(@version.determinants))
+      else 
+        @determinants = []
+      end 
+
+      if !@version.inclusions.nil?
+        @inclusions = Inclusion.find(YAML.load(@version.inclusions))
+      else 
+        @inclusions = []
+      end 
+
+      if !@version.foundations.nil?
+        @foundations = Foundation.find(YAML.load(@version.foundations))
+      else 
+        @foundations = []
+      end 
+
+    else # setting them here to get least work in view
+      @keywords = @publication.keywords.map{|k| Variable.find(k.variable_id)}
+      @mediators = @publication.mediators.map{|k| Variable.find(k.variable_id)}
+      @outcomes = @publication.outcomes.map{|k| Variable.find(k.variable_id)}
+      @determinants = @publication.determinants.map{|k| Variable.find(k.variable_id)}
+      @inclusions = @publication.inclusions
+      @foundations = @publication.foundations
+    end
+
+    # respond to format, mostly for pdf rendering
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @publication }
@@ -82,6 +134,18 @@ class PublicationsController < ApplicationController
   # GET /publications/1/edit
   def edit
     @publication = Publication.find(params[:id])
+    @publication.change = ""
+    if (@publication.state == "preplanned_submitted" || 
+        @publication.state == "planned_submitted" || 
+        @publication.state == "inprogress_submitted" || 
+        @publication.state == "submitted_submitted" || 
+        @publication.state == "accepted_submitted") && 
+        !current_user.roles.include?("publication_group")
+      redirect_to @publication, notice: "Publication has been submitted and cannot be edited."
+    end
+    if @publication.archived 
+      redirect_to @publication, notice: "Publication is archived and cannot be edited."
+    end    
   end
 
   # POST /publications
@@ -202,7 +266,7 @@ class PublicationsController < ApplicationController
     @publication.preplanned_remind!
     @email = Email.find_by_trigger('preplanned_remind')    
     Notifier.workflow_notification(@publication.user,@email,@publication).deliver
-    flash[:notice] = "Pre planned publication first author reminder sent."
+    flash[:notice] = "Pre planned publication hbsc responsible author reminder sent."
     redirect_to list_publications_path       
   end
 
@@ -243,7 +307,7 @@ class PublicationsController < ApplicationController
     @publication.planned_remind!
     @email = Email.find_by_trigger('planned_remind')    
     Notifier.workflow_notification(@publication.user,@email,@publication).deliver
-    flash[:notice] = "Planned publication first author reminder sent."
+    flash[:notice] = "Planned publication hbsc responsible author reminder sent."
     redirect_to list_publications_path    
   end
       
@@ -284,7 +348,7 @@ class PublicationsController < ApplicationController
     @publication.inprogress_remind!
     @email = Email.find_by_trigger('inprogress_remind')    
     Notifier.workflow_notification(@publication.user,@email,@publication).deliver
-    flash[:notice] = "In progress publication first author reminder sent."
+    flash[:notice] = "In progress publication hbsc responsible author reminder sent."
     redirect_to list_publications_path    
   end    
 
@@ -325,7 +389,7 @@ class PublicationsController < ApplicationController
     @publication.submitted_remind!
     @email = Email.find_by_trigger('submitted_remind')    
     Notifier.workflow_notification(@publication.user,@email,@publication).deliver
-    flash[:notice] = "Submitted publication first author reminder sent."
+    flash[:notice] = "Submitted publication hbsc responsible author reminder sent."
     redirect_to list_publications_path      
   end 
 
@@ -366,7 +430,7 @@ class PublicationsController < ApplicationController
     @publication.accepted_remind!
     @email = Email.find_by_trigger('accepted_remind')    
     Notifier.workflow_notification(@publication.user,@email,@publication).deliver
-    flash[:notice] = "Accepted publication first author reminder sent."  
+    flash[:notice] = "Accepted publication hbsc responsible author reminder sent."  
     redirect_to list_publications_path    
   end 
 
