@@ -79,7 +79,7 @@
           <td><%=h publication.title %></td>
           <td><%=h publication.updated_at.strftime('%Y-%m-%d') %></td>
           <td><%=h publication.state.humanize %></td>
-          <td><%= link_to "Show", publication %></td>
+          <td><%= link_to "Show", publication if permitted_to? :show, :publications %></td>
           <td><%= link_to "Edit", edit_publication_path(publication) %></td>  
         </tr>
       <% end %>

@@ -56,6 +56,7 @@
 </p>
 
 <div class="line_of_boxes">
+  <% if @keywords %>
   <div class="box_in_line">
     Keyword(s):
     <div class="box_in_line_content">
@@ -64,8 +65,9 @@
             <%=h keyword.name %><br />
         </div>
       <% end %>
-      </div>
+    </div>
   </div>
+  <% end %>
    <div class="box_bottom"></div>
 </div>
 <table width="80%">
@@ -91,7 +93,11 @@
     </tr>
      <% @publication.authors.each do |a| %>
      <tr>
-      <td><%=h (a.number+1).ordinalize %></td>
+      <% if a.number? %>
+        <td><%=h (a.number+1).ordinalize %></td>
+      <% else %>
+        <td><%=h (a.position).ordinalize %></td>
+      <% end %>
       <td><%=h a.name %></td>
       <td><%=h a.email %></td>
       <td>
@@ -151,6 +157,7 @@
 
 <h3>Variables</h3>
  <div class="line_of_boxes">
+  <% if @outcomes %>
   <div class="box_in_line">
     Outcome measure(s):
     <div class="box_in_line_content">
@@ -161,7 +168,8 @@
       <% end %>
       </div>
   </div>
-
+  <% end %>
+  <% if @determinants %>
   <div class="box_in_line">
     Determinant(s):
     <div class="box_in_line_content">
@@ -170,8 +178,10 @@
           <%=h determinant.variable_name %></br />
       </div>
       <% end %>
-      </div>
+    </div>
   </div>
+  <% end %>
+  <% if @mediators %>
   <div class="box_in_line">
     Other key variables:
     <div class="box_in_line_content">
@@ -181,7 +191,8 @@
       </div>
     <% end %>
     </div>
-    </div>
+  </div>
+  <% end %>
 
    <div class="box_bottom"></div>
 </div>

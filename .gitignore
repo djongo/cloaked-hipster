@@ -28,3 +28,6 @@
 # Ignore sphinx files
 /db/sphinx/*
 /config/*.sphinx.conf
+
+# Ignore db dump
+*.dump

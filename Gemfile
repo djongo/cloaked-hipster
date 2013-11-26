@@ -64,6 +64,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'wkhtmltopdf-binary', '0.9.9.1'
+  gem 'webrick', '~> 1.3.1'
   # gem 'thin'
   # gem 'quiet_assets'
 end
