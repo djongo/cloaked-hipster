@@ -91,10 +91,15 @@
     <th>Country team</th>
     <th>Focus/Writing group</th>
     </tr>
+    <% if @publication.authors.first.number == 0 %>
+      <% addend = 1 %>
+    <% else %>
+      <% addend = 0 %>
+    <% end %>
      <% @publication.authors.each do |a| %>
      <tr>
-      <% if a.number? %>
-        <td><%=h (a.number+1).ordinalize %></td>
+      <% if a.number.is_a? Integer %>
+        <td><%=h (a.number+addend).ordinalize %></td>
       <% else %>
         <td><%=h (a.position).ordinalize %></td>
       <% end %>
@@ -116,6 +121,7 @@
 </p>
 
 <p>
+  <% if @publication.user %>
   <table class="pretty" width="80%">
     <tr>
       <th>Contact</th>
@@ -127,7 +133,10 @@
       <td><%=h @publication.user.name %></td>
       <td><%=h @publication.user.email %></td>    
     </tr>
-  </table>
+    </table>
+    <% else %>
+    <div class="alert alert-error">NO RESPONSIBLE AUTHOR - PLEASE FIX THIS ISSUE!</div>
+    <% end %>
 </p>
 
 <h3>Data</h3>
