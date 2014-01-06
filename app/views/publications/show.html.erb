@@ -91,10 +91,12 @@
     <th>Country team</th>
     <th>Focus/Writing group</th>
     </tr>
-    <% if @publication.authors.first.number == 0 %>
-      <% addend = 1 %>
-    <% else %>
-      <% addend = 0 %>
+    <% if !@publication.authors %>
+      <% if @publication.authors.first.number == 0 %>
+        <% addend = 1 %>
+      <% else %>
+        <% addend = 0 %>
+      <% end %>
     <% end %>
      <% @publication.authors.each do |a| %>
      <tr>
