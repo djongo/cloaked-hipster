@@ -100,7 +100,7 @@
     <% end %>
      <% @publication.authors.each do |a| %>
      <tr>
-      <% if a.number.is_a? Integer %>
+      <% if a.number.is_a? Integer and @object.try(:a) %>
         <td><%=h (a.number+addend).ordinalize %></td>
       <% else %>
         <td><%=h (a.position).ordinalize %></td>
@@ -168,37 +168,37 @@
 
 <h3>Variables</h3>
  <div class="line_of_boxes">
-  <% if @outcomes %>
+  <% if @publication.outcome_variables %>
   <div class="box_in_line">
     Outcome measure(s):
     <div class="box_in_line_content">
-      <% @outcomes.each do |outcome| %>
+      <% @publication.outcome_variables.each do |outcome| %>
         <div class="child">
-            <%=h outcome.variable_name %><br />
+            <%=h outcome.name %><br />
         </div>
       <% end %>
       </div>
   </div>
   <% end %>
-  <% if @determinants %>
+  <% if @publication.determinant_variables %>
   <div class="box_in_line">
     Determinant(s):
     <div class="box_in_line_content">
-      <% @determinants.each do |determinant| %>
+      <% @publication.determinant_variables.each do |determinant| %>
       <div class="child">
-          <%=h determinant.variable_name %></br />
+          <%=h determinant.name %></br />
       </div>
       <% end %>
     </div>
   </div>
   <% end %>
-  <% if @mediators %>
+  <% if @publication.mediator_variables %>
   <div class="box_in_line">
     Other key variables:
     <div class="box_in_line_content">
-    <% @mediators.each do |mediator| %>
+    <% @publication.mediator_variables.each do |mediator| %>
       <div class="child">
-        <%=h mediator.variable_name %><br />
+        <%=h mediator.name %><br />
       </div>
     <% end %>
     </div>
