@@ -6,40 +6,40 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-admin_user = User.find_by_email('jonasholstein@gmail.com')
-admin_user.roles_mask = 3
-admin_user.hbsc_member = true
-admin_user.save!
-puts 'user: ' << user.name
+# user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+# admin_user = User.find_by_email('jonasholstein@gmail.com')
+# admin_user.roles_mask = 3
+# admin_user.hbsc_member = true
+# admin_user.save!
+# puts 'user: ' << user.name
 
-user = User.find_or_create_by_email :name => ENV['ADMIN2_NAME'].dup, :email => ENV['ADMIN2_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-admin_user = User.find_by_email(ENV['ADMIN2_EMAIL'])
-admin_user.roles_mask = 3
-admin_user.hbsc_member = true
-admin_user.save!
-puts 'user: ' << user.name
+# user = User.find_or_create_by_email :name => ENV['ADMIN2_NAME'].dup, :email => ENV['ADMIN2_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+# admin_user = User.find_by_email(ENV['ADMIN2_EMAIL'])
+# admin_user.roles_mask = 3
+# admin_user.hbsc_member = true
+# admin_user.save!
+# puts 'user: ' << user.name
 
-user = User.find_or_create_by_email :name => ENV['ADMIN3_NAME'].dup, :email => ENV['ADMIN3_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-admin_user = User.find_by_email(ENV['ADMIN3_EMAIL'])
-admin_user.roles_mask = 3
-admin_user.hbsc_member = true
-admin_user.save!
-puts 'user: ' << user.name
+# user = User.find_or_create_by_email :name => ENV['ADMIN3_NAME'].dup, :email => ENV['ADMIN3_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+# admin_user = User.find_by_email(ENV['ADMIN3_EMAIL'])
+# admin_user.roles_mask = 3
+# admin_user.hbsc_member = true
+# admin_user.save!
+# puts 'user: ' << user.name
 
-user = User.find_or_create_by_email :name => ENV['ADMIN4_NAME'].dup, :email => ENV['ADMIN4_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-admin_user = User.find_by_email(ENV['ADMIN4_EMAIL'])
-admin_user.roles_mask = 3
-admin_user.hbsc_member = true
-admin_user.save!
-puts 'user: ' << user.name
+# user = User.find_or_create_by_email :name => ENV['ADMIN4_NAME'].dup, :email => ENV['ADMIN4_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+# admin_user = User.find_by_email(ENV['ADMIN4_EMAIL'])
+# admin_user.roles_mask = 3
+# admin_user.hbsc_member = true
+# admin_user.save!
+# puts 'user: ' << user.name
 
-user = User.find_or_create_by_email :name => ENV['ADMIN5_NAME'].dup, :email => ENV['ADMIN5_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-admin_user = User.find_by_email(ENV['ADMIN5_EMAIL'])
-admin_user.roles_mask = 3
-admin_user.hbsc_member = true
-admin_user.save!
-puts 'user: ' << user.name
+# user = User.find_or_create_by_email :name => ENV['ADMIN5_NAME'].dup, :email => ENV['ADMIN5_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+# admin_user = User.find_by_email(ENV['ADMIN5_EMAIL'])
+# admin_user.roles_mask = 3
+# admin_user.hbsc_member = true
+# admin_user.save!
+# puts 'user: ' << user.name
 
 # Load languages
 puts 'Languages'
