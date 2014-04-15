@@ -10,9 +10,9 @@
 	  		<%= f.input :email, label: false, placeholder: 'Email', input_html: { class: 'input-medium' } %>
 	  	</div>
 	  	<div class="author-inline">
-	  		<%= f.input :country_team_id, collection: CountryTeam.all, prompt: "Country team", label: false, input_html: { class: 'input-medium' } %></div>
+	  		<%= f.input :country_team_id, collection: CountryTeam.order(:name), prompt: "Country team", label: false, input_html: { class: 'input-medium', size: 1 } %></div>
 			<div class="author-inline">
-				<%= f.input :focus_group_id, collection: FocusGroup.all, prompt: "Focus group", label: false, input_html: { class: 'input-medium' } %></div>
+				<%= f.input :focus_group_id, collection: FocusGroup.order(:name), prompt: "Focus group", label: false, input_html: { class: 'input-medium', size: 1 } %></div>
 			<div class="author-inline"><%= f.hidden_field :_destroy %>
 	  		<%= link_to 'Remove', '#', class: "remove_fields btn btn-danger btn-small" %>
 	  	</div>
