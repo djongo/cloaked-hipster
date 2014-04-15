@@ -365,6 +365,15 @@ class Publication < ActiveRecord::Base
   	state :published
   	state :locked
 
+    state :preplanned_removal_requested
+    state :planned_removal_requested
+    state :inprogress_removal_requested
+    state :submitted_removal_requested
+    state :accepted_removal_requested
+    state :published_removal_requested
+
+    state :removed
+
 		# Locked to unlocked (preplanned)
 		event :unlock do 
 			transitions :from => :locked, :to => :preplanned
@@ -454,7 +463,64 @@ class Publication < ActiveRecord::Base
 	  event :accepted_remind do
 	    transitions :to => :accepted, :from => [:accepted]
 	  end
+  
+    # Handling removal requests
+    event :preplanned_removal_request do
+      transitions :to => :preplanned_removal_requested, :from => :preplanned
+    end
+
+    event :planned_removal_request do
+      transitions :to => :planned_removal_requested, :from => :planned
+    end
+
+    event :inprogress_removal_request do 
+      transitions :to => :inprogress_removal_requested, :from => :inprogress
+    end
+
+    event :submitted_removal_request do
+      transitions :to => :submitted_removal_requested, :from => :submitted
+    end
+
+    event :accepted_removal_request do
+      transitions :to => :accepted_removal_requested, :from => :accepted
+    end
+
+    event :published_removal_request do
+      transitions :to => :published_removal_requested, :from => :published
+    end
+
+    # Accept removal
+    event :removal_accept do 
+      transitions :to => :removed, :from => [:preplanned_removal_requested, :planned_removal_requested,
+        :inprogress_removal_requested, :submitted_removal_requested, :accepted_removal_requested, :planned_removal_requested]
+    end
+
+    # Rescuing from removal request
+    event :preplanned_removal_reject do
+      transitions :to => :preplanned, :from => [:preplanned_removal_requested]
+    end
+
+    event :planned_removal_reject do
+      transitions :to => :planned, :from => [:planned_removal_requested]
+    end
+
+    event :inprogress_removal_reject do
+      transitions :to => :inprogress, :from => [:inprogress_removal_requested]
+    end
+
+    event :submitted_removal_reject do
+      transitions :to => :submitted, :from => [:submitted_removal_requested]
+    end
+
+    event :accepted_removal_reject do
+      transitions :to => :accepted, :from => [:accepted_removal_requested]
+    end
+
+    event :published_removal_reject do
+      transitions :to => :published, :from => [:published_removal_requested]
+    end
   end
+
 
   # the functions      
   def send_preplanned_accept
@@ -497,5 +563,11 @@ class Publication < ActiveRecord::Base
     flash[:error] = "Rejected"
   end
 
+  def send_removal_accept
+    flash[:notice] = "Removed"
+  end
 
+  def send_removal_reject
+    flash[:error] = "Removal rejected. Restored to original state."
+  end
 end

@@ -78,6 +78,10 @@ if Page.find_by_title('master data').nil?
   Page.create! :title => 'master data', :content => 'This is the master data page'
 end
 
+if Page.find_by_title('no access').nil?
+  Page.create! :title => 'no access', :content => 'You do not have permission to do this action!<br />Maybe you do not have a user account or your user account does not have the right permissions. Please contact the Publication Group with your username and desired access.'
+end
+
 # # Load standard email texts
 puts 'Standard emails'
 if Email.find_by_trigger('preplanned_submit').nil?

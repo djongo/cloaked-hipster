@@ -18,10 +18,10 @@
         <%= f.input :keyword_tokens, label: "Keywords", input_html: { data: {load: @publication.keyword_variables } } %>
     </td>
     <td width="25%">
-      <%= f.input :publication_type_id, collection: PublicationType.all, input_html: { size: 1 } %>
+      <%= f.input :publication_type_id, collection: PublicationType.order(:name), input_html: { size: 1 } %>
     </td>
     <td width="25%">
-      <%= f.input :language_id, collection: Language.all, input_html: { size: 1 } %>
+      <%= f.input :language_id, collection: Language.order(:name), input_html: { size: 1 } %>
     </td>
   </tr>
 </table>  
@@ -37,9 +37,9 @@
 <%= link_to_add_fields "Add Author", f, :authors %>
 
 <h3>Contacts</h3>
-<%= f.input :user_id, label: "HBSC Responsible Author", collection: User.all, input_html: { size: 1 } %>
+<%= f.input :user_id, label: "HBSC Responsible Author", collection: User.order(:name), input_html: { size: 1 } %>
 
-<h3>Data</h3>   
+<h3>Data</h3>
 <div class="line_of_boxes">
   <div class="box_in_line">
         <%= f.label :survey_tokens, "Surveys" %>

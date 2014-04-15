@@ -59,6 +59,11 @@ class PagesController < ApplicationController
     @page = Page.find_by_title('about')  	
   end
 
+  def no_access
+    @title = "No access"
+    @page = Page.find_by_title('no access')   
+  end
+
   def master
   	if current_user #.roles.include?("publication_group")
 	    @title = "Master data"

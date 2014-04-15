@@ -1,4 +1,5 @@
 class AuthorsController < ApplicationController
+  
   # GET /authors
   # GET /authors.json
   def index

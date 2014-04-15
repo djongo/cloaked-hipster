@@ -44,6 +44,19 @@ PumaApp::Application.routes.draw do
       put 'accepted_accept'
       put 'accepted_reject'
       put 'accepted_remind'
+      put 'preplanned_removal_request'
+      put 'planned_removal_request'
+      put 'inprogress_removal_request'
+      put 'submitted_removal_request'
+      put 'accepted_removal_request'
+      put 'published_removal_request'
+      put 'removal_accept'
+      put 'preplanned_removal_reject'
+      put 'planned_removal_reject'
+      put 'inprogress_removal_reject'
+      put 'submitted_removal_reject'
+      put 'accepted_removal_reject'
+      put 'published_removal_reject'
       put 'unlock'
       put 'archive'
       put 'unarchive'
@@ -56,9 +69,10 @@ PumaApp::Application.routes.draw do
   resources :users
 
   root to: 'pages#home'
-  match '/about',   to: 'pages#about'
-  match '/contact', to: 'pages#contact'
-  match '/master',  to: 'pages#master'  
+  match '/about',     to: 'pages#about'
+  match '/contact',   to: 'pages#contact'
+  match '/master',    to: 'pages#master' 
+  match '/no_access', to: 'pages#no_access' 
 
 
   # The priority is based upon order of creation:

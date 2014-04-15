@@ -2,7 +2,7 @@
   <span class="handle">[drag]</span>
   <%= f.text_field :name, :size => 20 %>
   <%= f.text_field :email, :size => 20 %>
-  <%= f.collection_select :country_team_id, CountryTeam.all, :id, :name, options = { :prompt => "Select country team" } %>
-  <%= f.collection_select :focus_group_id, FocusGroup.all, :id, :name, options = { :prompt => "Select focus group" } %>
+  <%= f.collection_select :country_team_id, CountryTeam.order(:name), :id, :name, options = { :prompt => "Select country team" }, html_options = { :size => "1" } %>
+  <%= f.collection_select :focus_group_id, FocusGroup.order(:name), :id, :name, options = { :prompt => "Select focus group" }, html_options = { :size => "1" } %>
   <%= remove_child_link 'Remove author', f %>
 </li>

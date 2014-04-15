@@ -69,15 +69,25 @@ privileges do
   end
   
   privilege :progress do 
-   includes :preplanned_accept, :preplanned_reject, :planned_accept, :planned_reject, :inprogress_accept, :inprogress_reject, :submitted_accept, :submitted_reject, :submit_published, :accepted_accept, :accepted_reject
-
+   includes :preplanned_accept, :preplanned_reject, :planned_accept, :planned_reject, 
+            :inprogress_accept, :inprogress_reject, :submitted_accept, :submitted_reject, 
+            :submit_published, :accepted_accept, :accepted_reject,
+            :removal_accept, :preplanned_removal_reject, :planned_removal_reject, 
+            :inprogress_removal_reject, :submitted_removal_reject, :accepted_removal_reject, 
+            :published_removal_reject
   end
+
   privilege :remind do 
     includes :preplanned_remind, :planned_remind, :inprogress_remind, :submitted_remind, :accepted_remind
   end
 
+  # Privilege to submit for next state or removal
   privilege :submit do
-    includes :preplanned_submit, :planned_submit, :inprogress_submit, :submitted_submit, :accepted_submit
-  end    
+    includes  :preplanned_submit, :planned_submit, :inprogress_submit, :submitted_submit, :accepted_submit,
+              :preplanned_removal_request, :planned_removal_request, :inprogress_removal_request, 
+              :submitted_removal_request, :accepted_removal_request, :published_removal_request
+  end
+
+
   
 end
