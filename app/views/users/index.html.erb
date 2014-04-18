@@ -9,7 +9,6 @@
     <th>Created</th>
     <th>Last Login</th>
     <th>HBSC Member</th>
-    <th>Email test</th>
     <th>Roles</th>
     <th></th>
     <th></th><th></th>
@@ -24,7 +23,6 @@
       <td><%=h user.created_at.strftime('%Y-%m-%d') %></td>
       <td align="center"><%= user.last_sign_in_at? ? user.last_sign_in_at.strftime('%Y-%m-%d') : 'N/A' %></td>
       <td align="center"><%=h user.hbsc_member? ? 'Yes' : 'No' %></td>
-      <td align="center"><%= link_to "Send", test_mail_user_path %></td>
       <td><%=h user.role_symbols.join(', ').titleize %></td>
 
       <td><%= link_to "Show", user if permitted_to? :show, :users %></td>

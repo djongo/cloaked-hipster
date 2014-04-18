@@ -66,11 +66,7 @@ PumaApp::Application.routes.draw do
 
 
   devise_for :users
-  resources :users do
-    member do
-      put 'test_mail'
-    end
-  end
+  resources :users
 
   root to: 'pages#home'
   match '/about',     to: 'pages#about'
