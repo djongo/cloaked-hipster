@@ -31,3 +31,6 @@
 
 # Ignore db dump
 *.dump
+
+# Ignore env
+.env

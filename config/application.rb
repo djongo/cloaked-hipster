@@ -87,5 +87,8 @@ module PumaApp
     # config.middleware.use "PDFKit::Middleware", :print_media_type => true
     # config.middleware.use WickedPdf::Middleware
 
+    config.action_mailer.delivery_method = :postmark
+    config.action_mailer.postmark_settings = { :api_key => ENV['POSTMARK_API_KEY'] }
+
   end
 end

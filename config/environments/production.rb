@@ -74,14 +74,24 @@ PumaApp::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
 
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.gmail.com",
+  #   port: 587,
+  #   domain: "puma.hbsc@gmail.com",
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  #   user_name: ENV["GMAIL_USERNAME"],
+  #   password: ENV["GMAIL_PASSWORD"]
+  # }
+
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: "puma.hbsc@gmail.com",
+    address: ENV['POSTMARK_SMTP_SERVER'],
+    port: '25',
+    domain: 'hbsc.herokuapp.com',
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: ENV['POSTMARK_API_KEY'],
+    password: ENV['POSTMARK_API_KEY']
   }
 
 end

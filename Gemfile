@@ -29,6 +29,7 @@ gem 'pdfkit', '0.5.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '0.3.13'  
+gem 'postmark-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -65,6 +66,7 @@ group :development do
   gem 'meta_request'
   gem 'wkhtmltopdf-binary', '0.9.9.1'
   gem 'webrick', '~> 1.3.1'
+  gem 'foreman'
   # gem 'thin'
   # gem 'quiet_assets'
 end
