@@ -55,4 +55,10 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: "User removed."
   end
 
+  def testmail
+    @user = User.find(params[:id])
+    Notifier.test_mail(@user)
+    flash[:notice] = "Test email sent to user"
+  end
+
 end
