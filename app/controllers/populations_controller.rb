@@ -1,4 +1,5 @@
 class PopulationsController < ApplicationController
+  filter_resource_access
   # GET /populations
   # GET /populations.json
   def index
@@ -13,7 +14,7 @@ class PopulationsController < ApplicationController
   # GET /populations/1
   # GET /populations/1.json
   def show
-    @population = Population.find(params[:id])
+    #@population = Population.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class PopulationsController < ApplicationController
   # GET /populations/new
   # GET /populations/new.json
   def new
-    @population = Population.new
+    #@population = Population.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class PopulationsController < ApplicationController
 
   # GET /populations/1/edit
   def edit
-    @population = Population.find(params[:id])
+    #@population = Population.find(params[:id])
   end
 
   # POST /populations
   # POST /populations.json
   def create
-    @population = Population.new(params[:population])
+    #@population = Population.new(params[:population])
 
     respond_to do |format|
       if @population.save
@@ -56,7 +57,7 @@ class PopulationsController < ApplicationController
   # PUT /populations/1
   # PUT /populations/1.json
   def update
-    @population = Population.find(params[:id])
+    #@population = Population.find(params[:id])
 
     respond_to do |format|
       if @population.update_attributes(params[:population])
@@ -72,7 +73,7 @@ class PopulationsController < ApplicationController
   # DELETE /populations/1
   # DELETE /populations/1.json
   def destroy
-    @population = Population.find(params[:id])
+    #@population = Population.find(params[:id])
     @population.destroy
 
     respond_to do |format|

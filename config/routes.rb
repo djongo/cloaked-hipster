@@ -66,7 +66,9 @@ PumaApp::Application.routes.draw do
 
 
   devise_for :users
-  resources :users
+  scope "/admin" do 
+    resources :users
+  end
 
   root to: 'pages#home'
   match '/about',     to: 'pages#about'

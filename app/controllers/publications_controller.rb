@@ -1,4 +1,5 @@
 class PublicationsController < ApplicationController
+  filter_access_to :all
   # GET /publications
   # GET /publications.json
 

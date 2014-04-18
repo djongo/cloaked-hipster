@@ -103,7 +103,7 @@
       <% if a.number.is_a? Integer and @object.try(:a) %>
         <td><%=h (a.number+addend).ordinalize %></td>
       <% else %>
-        <td><%=h (a.position).ordinalize %></td>
+        <td><%=h (a.number+1).ordinalize %></td>
       <% end %>
       <td><%=h a.name %></td>
       <td><%=h a.email %></td>

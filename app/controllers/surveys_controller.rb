@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  filter_resource_access
   # GET /surveys
   # GET /surveys.json
   def index
@@ -13,7 +14,7 @@ class SurveysController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-    @survey = Survey.find(params[:id])
+    #@survey = Survey.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class SurveysController < ApplicationController
   # GET /surveys/new
   # GET /surveys/new.json
   def new
-    @survey = Survey.new
+    #@survey = Survey.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class SurveysController < ApplicationController
 
   # GET /surveys/1/edit
   def edit
-    @survey = Survey.find(params[:id])
+    #@survey = Survey.find(params[:id])
   end
 
   # POST /surveys
   # POST /surveys.json
   def create
-    @survey = Survey.new(params[:survey])
+    #@survey = Survey.new(params[:survey])
 
     respond_to do |format|
       if @survey.save
@@ -56,7 +57,7 @@ class SurveysController < ApplicationController
   # PUT /surveys/1
   # PUT /surveys/1.json
   def update
-    @survey = Survey.find(params[:id])
+    #@survey = Survey.find(params[:id])
 
     respond_to do |format|
       if @survey.update_attributes(params[:survey])
@@ -72,7 +73,7 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
-    @survey = Survey.find(params[:id])
+    #@survey = Survey.find(params[:id])
     @survey.destroy
 
     respond_to do |format|

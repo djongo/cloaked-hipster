@@ -1,4 +1,5 @@
 class VariablesController < ApplicationController
+  filter_resource_access
   # GET /variables
   # GET /variables.json
   def index
@@ -13,7 +14,7 @@ class VariablesController < ApplicationController
   # GET /variables/1
   # GET /variables/1.json
   def show
-    @variable = Variable.find(params[:id])
+    #@variable = Variable.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class VariablesController < ApplicationController
   # GET /variables/new
   # GET /variables/new.json
   def new
-    @variable = Variable.new
+    #@variable = Variable.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class VariablesController < ApplicationController
 
   # GET /variables/1/edit
   def edit
-    @variable = Variable.find(params[:id])
+    #@variable = Variable.find(params[:id])
   end
 
   # POST /variables
   # POST /variables.json
   def create
-    @variable = Variable.new(params[:variable])
+    #@variable = Variable.new(params[:variable])
 
     respond_to do |format|
       if @variable.save
@@ -56,7 +57,7 @@ class VariablesController < ApplicationController
   # PUT /variables/1
   # PUT /variables/1.json
   def update
-    @variable = Variable.find(params[:id])
+    #@variable = Variable.find(params[:id])
 
     respond_to do |format|
       if @variable.update_attributes(params[:variable])
@@ -72,7 +73,7 @@ class VariablesController < ApplicationController
   # DELETE /variables/1
   # DELETE /variables/1.json
   def destroy
-    @variable = Variable.find(params[:id])
+    #@variable = Variable.find(params[:id])
     @variable.destroy
 
     respond_to do |format|

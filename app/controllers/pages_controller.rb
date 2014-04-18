@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  filter_access_to [:index, :edit, :update, :master]
   # GET /pages
   # GET /pages.json
   def index

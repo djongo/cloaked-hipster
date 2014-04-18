@@ -1,4 +1,5 @@
 class EmailsController < ApplicationController
+  filter_resource_access
   # GET /emails
   # GET /emails.json
   def index
@@ -34,7 +35,7 @@ class EmailsController < ApplicationController
 
   # GET /emails/1/edit
   def edit
-    @email = Email.find(params[:id])
+    #@email = Email.find(params[:id])
   end
 
   # POST /emails
@@ -56,7 +57,7 @@ class EmailsController < ApplicationController
   # PUT /emails/1
   # PUT /emails/1.json
   def update
-    @email = Email.find(params[:id])
+    #@email = Email.find(params[:id])
 
     respond_to do |format|
       if @email.update_attributes(params[:email])

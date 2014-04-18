@@ -1,4 +1,5 @@
 class PublicationTypesController < ApplicationController
+  filter_resource_access
   # GET /publication_types
   # GET /publication_types.json
   def index
@@ -13,7 +14,7 @@ class PublicationTypesController < ApplicationController
   # GET /publication_types/1
   # GET /publication_types/1.json
   def show
-    @publication_type = PublicationType.find(params[:id])
+    #@publication_type = PublicationType.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class PublicationTypesController < ApplicationController
   # GET /publication_types/new
   # GET /publication_types/new.json
   def new
-    @publication_type = PublicationType.new
+    #@publication_type = PublicationType.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class PublicationTypesController < ApplicationController
 
   # GET /publication_types/1/edit
   def edit
-    @publication_type = PublicationType.find(params[:id])
+    #@publication_type = PublicationType.find(params[:id])
   end
 
   # POST /publication_types
   # POST /publication_types.json
   def create
-    @publication_type = PublicationType.new(params[:publication_type])
+    #@publication_type = PublicationType.new(params[:publication_type])
 
     respond_to do |format|
       if @publication_type.save
@@ -56,7 +57,7 @@ class PublicationTypesController < ApplicationController
   # PUT /publication_types/1
   # PUT /publication_types/1.json
   def update
-    @publication_type = PublicationType.find(params[:id])
+    #@publication_type = PublicationType.find(params[:id])
 
     respond_to do |format|
       if @publication_type.update_attributes(params[:publication_type])
@@ -72,7 +73,7 @@ class PublicationTypesController < ApplicationController
   # DELETE /publication_types/1
   # DELETE /publication_types/1.json
   def destroy
-    @publication_type = PublicationType.find(params[:id])
+    #@publication_type = PublicationType.find(params[:id])
     @publication_type.destroy
 
     respond_to do |format|

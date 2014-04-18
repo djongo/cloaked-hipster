@@ -1,4 +1,5 @@
 class CountryTeamsController < ApplicationController
+  filter_resource_access
   # GET /country_teams
   # GET /country_teams.json
   def index
@@ -13,7 +14,7 @@ class CountryTeamsController < ApplicationController
   # GET /country_teams/1
   # GET /country_teams/1.json
   def show
-    @country_team = CountryTeam.find(params[:id])
+    #@country_team = CountryTeam.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class CountryTeamsController < ApplicationController
   # GET /country_teams/new
   # GET /country_teams/new.json
   def new
-    @country_team = CountryTeam.new
+    #@country_team = CountryTeam.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class CountryTeamsController < ApplicationController
 
   # GET /country_teams/1/edit
   def edit
-    @country_team = CountryTeam.find(params[:id])
+    #@country_team = CountryTeam.find(params[:id])
   end
 
   # POST /country_teams
   # POST /country_teams.json
   def create
-    @country_team = CountryTeam.new(params[:country_team])
+    #@country_team = CountryTeam.new(params[:country_team])
 
     respond_to do |format|
       if @country_team.save
@@ -56,7 +57,7 @@ class CountryTeamsController < ApplicationController
   # PUT /country_teams/1
   # PUT /country_teams/1.json
   def update
-    @country_team = CountryTeam.find(params[:id])
+    #@country_team = CountryTeam.find(params[:id])
 
     respond_to do |format|
       if @country_team.update_attributes(params[:country_team])
@@ -72,7 +73,7 @@ class CountryTeamsController < ApplicationController
   # DELETE /country_teams/1
   # DELETE /country_teams/1.json
   def destroy
-    @country_team = CountryTeam.find(params[:id])
+    #@country_team = CountryTeam.find(params[:id])
     @country_team.destroy
 
     respond_to do |format|

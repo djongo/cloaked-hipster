@@ -1,4 +1,5 @@
 class FocusGroupsController < ApplicationController
+  filter_resource_access
   # GET /focus_groups
   # GET /focus_groups.json
   def index

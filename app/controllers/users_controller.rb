@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_filter :authenticate_user!
+  filter_resource_access
 
   def index
     # @per_page = params[:per_page] || 15
@@ -11,15 +12,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
   end
 
   def new
-    @user = User.new
+    #@user = User.new
   end
   
   def create
-    @user = User.new(params[:user])
+    #@user = User.new(params[:user])
     if @user.save
       redirect_to root_url, notice: "Registration successful."
     else
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     end
   end
   def edit
-      @user = User.find(params[:id])
+      #@user = User.find(params[:id])
 #    if @user.roles.include?("publication_group")
 #      @user = User.find(params[:id])
 #    else
@@ -36,7 +37,12 @@ class UsersController < ApplicationController
   end
   
   def update
-      @user = User.find(params[:id])
+      #@user = User.find(params[:id])
+    if params[:user][:password].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+    end
+      
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated profile."
       #Notifier.test_mail(@user)
@@ -51,7 +57,7 @@ class UsersController < ApplicationController
   end  
 
   def destroy
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @user.destroy
     redirect_to users_url, notice: "User removed."
   end
