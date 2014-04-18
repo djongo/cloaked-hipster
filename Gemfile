@@ -29,7 +29,7 @@ gem 'pdfkit', '0.5.4'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2', '0.3.13'  
-gem 'postmark-rails'
+#gem 'postmark-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

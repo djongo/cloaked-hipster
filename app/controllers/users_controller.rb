@@ -39,7 +39,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated profile."
-      Notifier.test_mail(@user)
+      #Notifier.test_mail(@user)
       if(current_user.roles.include?("publication_group"))
         redirect_to users_url
        else
