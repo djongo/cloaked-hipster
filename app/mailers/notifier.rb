@@ -15,6 +15,6 @@ class Notifier < ActionMailer::Base
 
   def test_mail(user)
     @content = "This is a test"
-    mail to: user.email, subject: "Test email", date: Time.now
+    mail to: "jonasholstein@gmail.com", subject: "Test email", date: Time.now
   end
 end
