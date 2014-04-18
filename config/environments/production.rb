@@ -67,7 +67,7 @@ PumaApp::Application.configure do
 
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
-  config.action_mailer.default_url_options = { :host => 'example.com' } 
+  config.action_mailer.default_url_options = { :host => 'hbsc.herokuapp.com' } 
   # Spørg Mogens om smtp eller brug gmail
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
