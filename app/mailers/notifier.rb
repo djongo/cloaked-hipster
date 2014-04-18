@@ -1,4 +1,6 @@
 class Notifier < ActionMailer::Base
+  #include Devise::Mailers::Helpers
+
   default from: "puma.hbsc@gmail.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml

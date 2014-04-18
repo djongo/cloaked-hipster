@@ -85,13 +85,13 @@ PumaApp::Application.configure do
   # }
 
   config.action_mailer.smtp_settings = {
-    address: ENV['POSTMARK_SMTP_SERVER'],
-    port: '25',
-    domain: 'hbsc.herokuapp.com',
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV['POSTMARK_API_KEY'],
-    password: ENV['POSTMARK_API_KEY']
+    :address          => ENV['POSTMARK_SMTP_SERVER'],
+    :port             => '25',
+    :domain           => 'hbsc.herokuapp.com',
+    :user_name        => ENV['POSTMARK_API_KEY'],
+    :password         => ENV['POSTMARK_API_KEY'],
+    :authentication   => :plain
+    #:enable_starttls_auto => true
   }
 
 end
