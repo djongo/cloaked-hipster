@@ -1,9 +1,9 @@
 ThinkingSphinx::Index.define :publication, :with => :active_record do
     indexes title, :sortable => true
     indexes abstract
-    indexes language.name #, :as => :language_name
+    indexes language.name#, :as => :language_name
     indexes publication_type.name #, :as => :publication_type
-    indexes :id, :as => :publication_id
+    indexes :id#, :as => :publication_id
     indexes state, :sortable => true
     indexes reference
     indexes target_journal.name #, :as => :target_journal_name
