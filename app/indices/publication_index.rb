@@ -10,10 +10,10 @@ ThinkingSphinx::Index.define :publication, :with => :active_record do
     indexes populations.name, :as => :inclusion_name
     indexes surveys.name, :as => :foundation_name
     # indexes notes.content, :as => :note_content
-    
+
     # Keywords, mediators, outcomes, and determinants
     # indexes keyword_variables(:name), :as => :keyword_name
-    indexes variables.name, :as => :variable_name
+    # indexes variables.name, :as => :variable_name
 
     # People information
     indexes [user.first_name, user.last_name, user.email], :as => :responsible_author
@@ -26,5 +26,5 @@ ThinkingSphinx::Index.define :publication, :with => :active_record do
 
   # SOLUTION FOR HMT: http://railsforum.com/viewtopic.php?id=28917
     has created_at, updated_at, :id
-    where "archived = 'false'"  
+    where "archived = 'false'"
 end
