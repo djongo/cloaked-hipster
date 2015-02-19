@@ -14,6 +14,8 @@ ThinkingSphinx::Index.define :publication, :with => :active_record do
     # Keywords, mediators, outcomes, and determinants
     # indexes keyword_variables(:name), :as => :keyword_name
     # indexes variables.name, :as => :variable_name
+    indexes keywords.name, :as => :keyword_name
+    indexes determinants.name, :as => :determinant_name
 
     # People information
     indexes [user.first_name, user.last_name, user.email], :as => :responsible_author
